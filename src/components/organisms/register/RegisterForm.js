@@ -2,15 +2,16 @@ import React, { useRef, useState } from 'react';
 import styled from 'styled-components';
 
 import { AiOutlineCamera } from 'react-icons/ai';
-import { FaStar } from 'react-icons/fa';
 import ImagePreview from '../../molecules/register/ImagePreview';
 import ReviewInput from '../../atmoms/register/ReviewInput';
+import Rating from '../../molecules/Rating';
 
 function RegisterForm() {
   const [files, setFiles] = useState(null);
   const [image, setImage] = useState('');
+  const [rating, setRating] = useState(3);
+  const starArr = [1, 2, 3, 4, 5];
   const uploadRef = useRef();
-  console.log(files);
 
   const imageUpload = () => {
     uploadRef.current.click();
@@ -43,8 +44,13 @@ function RegisterForm() {
         <Wrapper>
           <StyledCamera onClick={imageUpload} />
           <input type="file" ref={uploadRef} onChange={onLoadFile} />
-          {Array.from({ length: 5 }, (_, idx) => idx + 1).map((el) => (
-            <StyledStar key={el} />
+          {starArr.map((el) => (
+            <Rating
+              key={el}
+              active={el <= rating ? 'true' : 'false'}
+              num={el}
+              setRating={setRating}
+            />
           ))}
         </Wrapper>
         <ReviewInput />
@@ -71,12 +77,6 @@ const Wrapper = styled.div`
 const StyledCamera = styled(AiOutlineCamera)`
   font-size: 1.5rem;
   margin-right: 1.2rem;
-`;
-
-const StyledStar = styled(FaStar)`
-  font-size: 1.5rem;
-  color: #e6e6e6;
-  /* color: #fcc419; */
 `;
 
 const SubmitBtn = styled.button`
