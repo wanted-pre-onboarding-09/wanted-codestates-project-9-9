@@ -1,5 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Sort from './components/atmoms/Sort';
+import ListPage from './components/molecules/ListPage';
 
 // const WholeContainer = styled.div`
 //   display: flex;
@@ -19,6 +21,8 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/detail/:id" element={<DetailPage />} />
       </Routes>
+      <Sort />
+      <ListPage />
     </BrowserRouter>
   );
 }
