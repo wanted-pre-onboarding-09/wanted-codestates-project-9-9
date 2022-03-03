@@ -18,9 +18,26 @@ const reviewSlice = createSlice({
 
       state.data = [...state.data, newReview];
     },
+    addComment: (state, action) => {
+      const currentReview = state.data.filter(
+        (review) => review.postNumber === action.payload.postNumber,
+      );
+
+      currentReview[0].comments.push(action.payload.newComment);
+    },
+    addRecomment: (state, action) => {
+      const currentReview = state.data.filter(
+        (review) => review.postNumber === action.payload.postNumber,
+      );
+      const currentComment = currentReview[0].comments.filter(
+        (comment) => comment.id === action.payload.commentId,
+      );
+
+      currentComment[0].recomment.push(action.payload.newRecomment);
+    },
   },
   extraReducers: {},
 });
 
-export const { addReview } = reviewSlice.actions;
+export const { addReview, addComment, addRecomment } = reviewSlice.actions;
 export default reviewSlice.reducer;

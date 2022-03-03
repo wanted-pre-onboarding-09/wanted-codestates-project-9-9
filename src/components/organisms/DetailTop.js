@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import MoreBtn from '../../../assets/icon-more.png';
-import dummyData from '../../../dummy/dummyData';
+import MoreBtn from '../../asset/icon-more.png';
+import dummyData from '../../dummy/dummyData';
 
 const DetailTopWrap = styled.div`
   width: 100%;
@@ -9,9 +9,8 @@ const DetailTopWrap = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
-  /* background: #e6e6e6; */
-  padding: 20px 20px;
+  background: #e6e6e6;
+  padding: 10px 10px;
 
   > .DateBtnWrap {
     min-width: 10rem;
@@ -26,8 +25,9 @@ const DetailTopWrap = styled.div`
 const DetailUserId = styled.div`
   max-width: 30%;
   height: 2rem;
-  font-size: 1.5rem;
-  font-weight: bold;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 `;
 
 const DetailDate = styled.div`
@@ -43,7 +43,7 @@ const MoreBtnWrap = styled.div`
   display: flex;
   justify-content: flex-end;
   > img {
-    width: 2rem;
+    width: 1rem;
   }
 `;
 

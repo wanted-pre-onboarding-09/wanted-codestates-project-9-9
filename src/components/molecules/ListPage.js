@@ -2,13 +2,12 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import gridIcon from '../../assets/gridIcon.png';
 import detailIcon from '../../assets/detailIcon.png';
-// import dummyData from '../../dummy/dummyData';
 import data from '../../data.json';
+import InfiniteList from './InfiniteList';
 
 const ListBox = styled.div`
-  width: 500px;
+  width: 100%;
   margin: 0 auto;
-  border: 1px solid black;
 `;
 
 const BtnBox = styled.div`
@@ -32,16 +31,18 @@ const IconBox = styled.img`
 `;
 
 const ViewBox = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-auto-rows: 8rem;
-  gap: 2px;
+  & div {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-auto-rows: 8rem;
+    gap: 2px;
+  }
+  & div img {
+    width: 100%;
+    height: 100%;
+  }
 `;
-// const Box = styled.div`
-//   width: 100%;
-//   height: 100%;
-//   overflow: overlay;
-// `;
+
 const ImgBox = styled.img`
   width: 100%;
   height: 100%;
@@ -50,7 +51,7 @@ const ImgBox = styled.img`
 function ListPage() {
   const [changeList, setChangeList] = useState('grid');
   const [list, setList] = useState([]);
-
+  console.log(list);
   useEffect(() => {
     document.querySelector('#grid').style.opacity = '1';
     document.querySelector('#grid').style.borderBottom = '3px solid black';
@@ -104,7 +105,9 @@ function ListPage() {
         </ChangeBtn>
       </BtnBox>
 
-      <ViewBox>{list}</ViewBox>
+      <ViewBox>
+        <InfiniteList />
+      </ViewBox>
     </ListBox>
   );
 }
