@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import dummyData from '../../../dummy/dummyData';
+import dummyData from '../../dummy/dummyData';
 
 const DetailImgWrap = styled.div`
   width: 100%;
@@ -11,7 +11,6 @@ const DetailImgWrap = styled.div`
   background: #bdbdbd;
   > .DetailImg {
     width: 100%;
-    height: 100%;
 
     > img {
       width: 100%;

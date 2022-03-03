@@ -8,40 +8,29 @@ import Rating from '../../molecules/Rating';
 
 function RegisterForm() {
   const [files, setFiles] = useState(null);
-  const [image, setImage] = useState([]);
+  const [image, setImage] = useState('');
   const [rating, setRating] = useState(3);
   const starArr = [1, 2, 3, 4, 5];
   const uploadRef = useRef();
-
-  console.log(files);
 
   const imageUpload = () => {
     uploadRef.current.click();
   };
   const onLoadFile = (e) => {
     e.preventDefault();
-    // [...e.target.files].forEach((item) => console.log(item));
-    const { files } = e.target;
+    const file = e.target.files[0];
+    const reader = new FileReader();
 
-    function readAndPreview(file) {
-      const reader = new FileReader();
+    reader.onloadend = () => {
+      const base64 = reader.result;
+      if (base64) {
+        setImage(base64.toString());
+      }
+    };
 
-      reader.onloadend = () => {
-        const base64 = reader.result;
-        if (base64) {
-          setImage((prev) => [...prev, base64]);
-        }
-      };
-      reader.onerror = (error) => {
-        console.error('Error: ', error);
-      };
+    if (file) {
       reader.readAsDataURL(file);
-    }
-
-    if (files) {
-      [].forEach.call(files, readAndPreview);
-      // [...file].forEach((item) => reader.readAsDataURL(item));
-      setFiles(files);
+      setFiles(file);
     }
   };
   const handleSubmit = (e) => {
@@ -50,17 +39,11 @@ function RegisterForm() {
 
   return (
     <Container>
-      <ImagePreview image={image} setImage={setImage} />
+      <ImagePreview image={image} />
       <form onSubmit={handleSubmit}>
         <Wrapper>
           <StyledCamera onClick={imageUpload} />
-          <input
-            type="file"
-            multiple
-            hidden
-            ref={uploadRef}
-            onChange={onLoadFile}
-          />
+          <input type="file" ref={uploadRef} onChange={onLoadFile} />
           {starArr.map((el) => (
             <Rating
               key={el}
@@ -86,12 +69,14 @@ const Container = styled.div`
 
 const Wrapper = styled.div`
   display: flex;
+  input[type='file'] {
+    display: none;
+  }
 `;
 
 const StyledCamera = styled(AiOutlineCamera)`
   font-size: 1.5rem;
   margin-right: 1.2rem;
-  cursor: pointer;
 `;
 
 const SubmitBtn = styled.button`

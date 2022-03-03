@@ -1,23 +1,8 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
-import { changeField } from '../../../store/form/formSlice';
 
 function ReviewInput() {
-  const { content } = useSelector(({ form }) => form.content);
-  const dispatch = useDispatch();
-
-  const handleChangeText = (e) => {
-    dispatch(changeField({ key: 'content', value: e.target.value }));
-  };
-
-  return (
-    <StyledTextInput
-      placeholder="리뷰 내용을 입력해 주세요."
-      value={content}
-      onChange={handleChangeText}
-    />
-  );
+  return <StyledTextInput placeholder="리뷰 내용을 입력해 주세요." />;
 }
 
 export default ReviewInput;
