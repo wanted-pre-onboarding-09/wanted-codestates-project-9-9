@@ -1,56 +1,33 @@
 import React from 'react';
-import styled, { keyframes } from 'styled-components';
-import PropTypes from 'prop-types';
+import styled from 'styled-components';
+import { useDispatch } from 'react-redux';
+import ShareRadar from '../../assets/share.png';
+import { handleModalValue } from '../../store/modalValue';
 
-const changeColor = keyframes`
-  0% {
-    color: #848484;
-  }
-  50% {
-    color: #e6e6e6;
-  }
-  100% {
-    color: #848484;
-  }
-`;
-
-const ShareContainer = styled.span`
-  cursor: pointer;
+const ShareBtnWrap = styled.div`
+  min-width: 30px;
   display: flex;
-  flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin-left: 15px;
-
-  .share-img {
-    height: 100%;
-    color: #848484;
-
-    &.share-clicked {
-      animation: ${changeColor} 4s none;
-    }
-  }
-
-  .share-title {
-    color: #848484;
-    font-size: 1rem;
-    margin-left: 0.2rem;
-    height: 100%;
-    padding-top: 2px;
-
-    &.share-clicked {
-      animation: ${changeColor} 4s none;
-    }
-  }
+  min-height: 2rem;
+  margin-left: 1rem;
 `;
 
-// eslint-disable-next-line react/prop-types
+const ShareImg = styled.img`
+  width: 1.8rem;
+`;
+
 function Share() {
-  return <ShareContainer />;
+  const dispatch = useDispatch();
+
+  const handleModal = () => {
+    dispatch(handleModalValue());
+    document.body.style.overflow = 'hidden';
+  };
+  return (
+    <ShareBtnWrap onClick={handleModal}>
+      <ShareImg src={ShareRadar} />
+    </ShareBtnWrap>
+  );
 }
-
-Share.propsTypes = {
-  url: PropTypes.string.isRequired,
-};
-
 export default Share;

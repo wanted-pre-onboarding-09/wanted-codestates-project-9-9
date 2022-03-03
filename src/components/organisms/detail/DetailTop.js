@@ -1,7 +1,7 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import styled from 'styled-components';
-import MoreBtn from '../../asset/icon-more.png';
-import dummyData from '../../dummy/dummyData';
+import MoreBtn from '../../../assets/icon-more.png';
 
 const DetailTopWrap = styled.div`
   width: 100%;
@@ -47,13 +47,12 @@ const MoreBtnWrap = styled.div`
   }
 `;
 
-function DetailTop() {
-  const { userId, date } = dummyData[0];
+function DetailTop({ data }) {
   return (
     <DetailTopWrap>
-      <DetailUserId>{userId}</DetailUserId>
+      <DetailUserId>{data.nickName}</DetailUserId>
       <div className="DateBtnWrap">
-        <DetailDate>{date.slice(0, 10)}</DetailDate>
+        <DetailDate>{data.date}</DetailDate>
         <MoreBtnWrap>
           <img src={MoreBtn} alt="없음" />
         </MoreBtnWrap>

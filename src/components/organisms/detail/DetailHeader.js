@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import LeftBtn from '../../asset/ic_left_btn.png';
-import CloseBtn from '../../asset/ic_can_btn.png';
+import { Link } from 'react-router-dom';
+import LeftBtn from '../../../assets/ic_left_btn.png';
+import CloseBtn from '../../../assets/ic_can_btn.png';
 
 const DetailHeaderWrap = styled.div`
   width: 100%;
@@ -15,7 +16,7 @@ const DetailHeaderWrap = styled.div`
 `;
 
 const LeftBtnWrap = styled.div`
-  width: 10%;
+  width: 3.5rem;
   > img {
     width: 50%;
   }
@@ -27,7 +28,7 @@ const HeaderTitle = styled.div`
 `;
 
 const CloseBtnWrap = styled.div`
-  width: 10%;
+  width: 3.5rem;
   display: flex;
   justify-content: flex-end;
   > img {
@@ -38,13 +39,17 @@ const CloseBtnWrap = styled.div`
 function DetailHaeder() {
   return (
     <DetailHeaderWrap>
-      <LeftBtnWrap>
-        <img src={LeftBtn} alt="없음" />
-      </LeftBtnWrap>
+      <Link to="/">
+        <LeftBtnWrap>
+          <img src={LeftBtn} alt="없음" />
+        </LeftBtnWrap>
+      </Link>
       <HeaderTitle>리뷰 상세보기</HeaderTitle>
-      <CloseBtnWrap>
-        <img src={CloseBtn} alt="없음" />
-      </CloseBtnWrap>
+      <Link to="/">
+        <CloseBtnWrap>
+          <img src={CloseBtn} alt="없음" />
+        </CloseBtnWrap>
+      </Link>
     </DetailHeaderWrap>
   );
 }
