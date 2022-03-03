@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import gridIcon from '../../assets/gridIcon.png';
 import detailIcon from '../../assets/detailIcon.png';
+import data from '../../data.json';
+import InfiniteList from './InfiniteList';
 
 const ListBox = styled.div`
-  width: 500px;
+  width: 100%;
   margin: 0 auto;
-  border: 1px solid black;
 `;
 
 const BtnBox = styled.div`
@@ -30,16 +31,18 @@ const IconBox = styled.img`
 `;
 
 const ViewBox = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-auto-rows: 8rem;
-  gap: 2px;
+  & div {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-auto-rows: 8rem;
+    gap: 2px;
+  }
+  & div img {
+    width: 100%;
+    height: 100%;
+  }
 `;
-const Box = styled.div`
-  width: 100%;
-  height: 100%;
-  overflow: overlay;
-`;
+
 const ImgBox = styled.img`
   width: 100%;
   height: 100%;
@@ -48,47 +51,27 @@ const ImgBox = styled.img`
 function ListPage() {
   const [changeList, setChangeList] = useState('grid');
   const [list, setList] = useState([]);
-  const testList = [
-    'https://i.balaan.io/review/RV0000021341-1_800.webp',
-    'https://i.balaan.io/review/RV0000021430-1_800.webp',
-    'https://i.balaan.io/review/7f1c1efa1bf16ba999dd2a1ec198060f_800.webp',
-    'https://i.balaan.io/review/RV0000021341-1_800.webp',
-    'https://i.balaan.io/review/RV0000021430-1_800.webp',
-    'https://i.balaan.io/review/7f1c1efa1bf16ba999dd2a1ec198060f_800.webp',
-    'https://i.balaan.io/review/RV0000021341-1_800.webp',
-    'https://i.balaan.io/review/RV0000021430-1_800.webp',
-    'https://i.balaan.io/review/7f1c1efa1bf16ba999dd2a1ec198060f_800.webp',
-    'https://i.balaan.io/review/RV0000021341-1_800.webp',
-    'https://i.balaan.io/review/RV0000021430-1_800.webp',
-    'https://i.balaan.io/review/7f1c1efa1bf16ba999dd2a1ec198060f_800.webp',
-    'https://i.balaan.io/review/RV0000021341-1_800.webp',
-    'https://i.balaan.io/review/RV0000021430-1_800.webp',
-    'https://i.balaan.io/review/7f1c1efa1bf16ba999dd2a1ec198060f_800.webp',
-    'https://i.balaan.io/review/RV0000021341-1_800.webp',
-    'https://i.balaan.io/review/RV0000021430-1_800.webp',
-    'https://i.balaan.io/review/7f1c1efa1bf16ba999dd2a1ec198060f_800.webp',
-    'https://i.balaan.io/review/RV0000021341-1_800.webp',
-    'https://i.balaan.io/review/RV0000021430-1_800.webp',
-    'https://i.balaan.io/review/7f1c1efa1bf16ba999dd2a1ec198060f_800.webp',
-  ];
-
   useEffect(() => {
     document.querySelector('#grid').style.opacity = '1';
     document.querySelector('#grid').style.borderBottom = '3px solid black';
   }, []);
 
   useEffect(() => {
-    if (changeList === 'detail') {
-      const gridList = testList.map((item) => (
-        <Box>
-          {item}
-          <div>상세페이지</div>
-        </Box>
+    if (changeList === 'grid') {
+      const gridList = data.map((item, i) => (
+        <ImgBox alt={i} src={item.img[0]} />
       ));
+
       setList(gridList);
     } else {
-      const gridList = testList.map((item, i) => <ImgBox alt={i} src={item} />);
-      setList(gridList);
+      // const gridList = testList.map((item) => (
+      //   <Box>
+      //     {item}
+      //     <div>상세페이지</div>
+      //   </Box>
+      // ));
+      // setList(gridList);
+      return {};
     }
   }, [changeList]);
   const ChangBtn = (event) => {
@@ -121,7 +104,9 @@ function ListPage() {
         </ChangeBtn>
       </BtnBox>
 
-      <ViewBox>{list}</ViewBox>
+      <ViewBox>
+        <InfiniteList />
+      </ViewBox>
     </ListBox>
   );
 }
