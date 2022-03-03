@@ -8,7 +8,6 @@ const DetailReviewSwiperWrap = styled.div`
   align-items: center;
   padding: 20px 20px;
   /* background: #e6e6e6; */
-
   > .content-title {
     border: 1px solid #999;
     border-radius: 1.1rem;
@@ -16,13 +15,11 @@ const DetailReviewSwiperWrap = styled.div`
     min-height: 1rem;
     line-height: 1rem;
     margin-right: 1rem;
-
     > .content-que {
       color: #666;
       font-size: 0.9rem;
       margin-right: 0.5rem;
     }
-
     > .content-ans {
       color: #122f5c;
       font-size: 0.9rem;

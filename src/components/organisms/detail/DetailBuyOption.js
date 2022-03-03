@@ -9,7 +9,6 @@ const DetailBuyOptionWrap = styled.div`
   align-items: center;
   padding: 20px 20px;
   /* background: #e6e6e6; */
-
   > .buy-option-desc {
     color: #999;
     font-size: 1.1rem;

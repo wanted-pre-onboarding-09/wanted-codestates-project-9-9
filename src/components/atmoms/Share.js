@@ -30,5 +30,4 @@ function Share() {
     </ShareBtnWrap>
   );
 }
-
 export default Share;

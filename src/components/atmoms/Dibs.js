@@ -22,11 +22,9 @@ const BlackDibsImg = styled.img`
 
 function Dibs() {
   const [isDibs, setIsDibs] = useState(false);
-
   const DibsHandler = () => {
     setIsDibs(!isDibs);
   };
-
   return (
     <DibsBtnWrap onClick={DibsHandler}>
       {isDibs ? (
@@ -37,5 +35,4 @@ function Dibs() {
     </DibsBtnWrap>
   );
 }
-
 export default Dibs;

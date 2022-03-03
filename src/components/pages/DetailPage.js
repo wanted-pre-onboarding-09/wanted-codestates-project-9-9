@@ -27,7 +27,6 @@ const DetailWrap = styled.div`
   }
   -ms-overflow-style: none; /* IE and Edge */
 `;
-
 const DetailRecommendProductSwipeWrap = styled.div`
   width: 100%;
   min-height: 315px;
@@ -60,5 +59,4 @@ function DetailPage() {
     </DetailWrap>
   );
 }
-
 export default DetailPage;

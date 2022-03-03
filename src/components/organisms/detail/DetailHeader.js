@@ -11,8 +11,8 @@ const DetailHeaderWrap = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  /* background: #bdbdbd; */
-  padding: 20px 20px;
+  background: #bdbdbd;
+  padding: 10px 10px;
 `;
 
 const LeftBtnWrap = styled.div`

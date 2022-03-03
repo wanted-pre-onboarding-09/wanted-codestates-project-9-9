@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 function ImagePreview({ image }) {
+  console.log(image);
   return <ImgPreview image={image} />;
 }
 
