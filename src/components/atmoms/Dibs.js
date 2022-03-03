@@ -13,11 +13,11 @@ const DibsBtnWrap = styled.div`
 `;
 
 const WhitesDibsImg = styled.img`
-  width: 2.5rem;
+  width: 2rem;
 `;
 
 const BlackDibsImg = styled.img`
-  width: 2.5rem;
+  width: 2rem;
 `;
 
 function Dibs() {
@@ -30,9 +30,9 @@ function Dibs() {
   return (
     <DibsBtnWrap onClick={DibsHandler}>
       {isDibs ? (
-        <WhitesDibsImg src={WhiteHeart} />
-      ) : (
         <BlackDibsImg src={BlackHeart} />
+      ) : (
+        <WhitesDibsImg src={WhiteHeart} />
       )}
     </DibsBtnWrap>
   );

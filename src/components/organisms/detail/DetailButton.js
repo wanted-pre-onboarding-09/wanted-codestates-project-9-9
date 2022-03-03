@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import styled from 'styled-components';
 import Likes from '../../atmoms/Likes';
@@ -23,11 +24,11 @@ const DetailButtonWrap = styled.div`
   }
 `;
 
-function DetailImg() {
+function DetailImg({ data }) {
   return (
     <DetailButtonWrap>
       <div className="LikesShareWrap">
-        <Likes />
+        <Likes data={data} />
         <Share />
       </div>
       <Dibs />
