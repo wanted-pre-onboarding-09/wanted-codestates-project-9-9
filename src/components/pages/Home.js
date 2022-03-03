@@ -1,11 +1,25 @@
 import React from 'react';
-// import InfiniteList from '../molecules/InfiniteList';
-import ListPage from '../molecules/ListPage';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+
+const WholeContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  padding: 100px;
+`;
 
 function Home() {
-  // return <div>Home</div>;
-  // return <InfiniteList />;
-  return <ListPage />;
+  return (
+    <WholeContainer>
+      <Link to="/">
+        <div>Home</div>
+      </Link>
+      &times;
+      <Link to="/detail">
+        <div>Detail</div>
+      </Link>
+    </WholeContainer>
+  );
 }
 
 export default Home;
