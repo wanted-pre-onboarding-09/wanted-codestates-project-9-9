@@ -38,5 +38,6 @@ module.exports = {
     'consistent-return': 'off',
     'jsx-a11y/img-redundant-alt': 'off',
     'react/no-array-index-key': 'off',
+    'import/prefer-default-export': 'off',
   },
 };
