@@ -1,12 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
-import DetailHeader from '../organisms/DetailHeader';
-import DetailTop from '../organisms/DetailTop';
-import DetailImg from '../organisms/DetailImg';
-import DetailButton from '../organisms/DetailButton';
+import DetailHeader from '../organisms/detail/DetailHeader';
+import DetailTop from '../organisms/detail/DetailTop';
+import DetailImg from '../organisms/detail/DetailImg';
+import DetailButton from '../organisms/detail/DetailButton';
+import DetailRating from '../organisms/detail/DetailRating';
+import DetailBuyOption from '../organisms/detail/DetailBuyOption';
+import DetailContent from '../organisms/detail/DetailContent';
+import DetailReviewSwiper from '../organisms/detail/DetailReviewSwiper';
+import DetailDelivery from '../organisms/detail/DetailDelivery';
 
 const DetailWrap = styled.div`
-  width: 500px;
+  max-width: 500px;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -18,37 +23,6 @@ const DetailWrap = styled.div`
     display: none;
   }
   -ms-overflow-style: none; /* IE and Edge */
-  background: #bdbdbd;
-`;
-
-const DetailRatingWrap = styled.div`
-  width: 100%;
-  height: 22px;
-  background: #bdbdbd;
-`;
-
-const DetailBuyOptionWrap = styled.div`
-  width: 100%;
-  height: 56px;
-  background: #e6e6e6;
-`;
-
-const DetailCommentWrap = styled.div`
-  width: 100%;
-  min-height: 100px;
-  background: #bdbdbd;
-`;
-
-const DetailReviewSwiperWrap = styled.div`
-  width: 100%;
-  height: 33px;
-  background: #e6e6e6;
-`;
-
-const DetailDeliveryWrap = styled.div`
-  width: 100%;
-  min-height: 33px;
-  background: #bdbdbd;
 `;
 
 const DetailRecommendProductSwipeWrap = styled.div`
@@ -64,15 +38,11 @@ function DetailPage() {
       <DetailTop />
       <DetailImg />
       <DetailButton />
-      <DetailRatingWrap>별 다섯개</DetailRatingWrap>
-      <DetailBuyOptionWrap>
-        구매옵션명:화이트/화이트골드로고/36.5/몸무게
-      </DetailBuyOptionWrap>
-      <DetailCommentWrap>좋은 옷 좋은 가격</DetailCommentWrap>
-      <DetailReviewSwiperWrap>
-        사이즈는 어떤가요? 정사이즈예요
-      </DetailReviewSwiperWrap>
-      <DetailDeliveryWrap>배송도착까지 21일 소요</DetailDeliveryWrap>
+      <DetailRating />
+      <DetailBuyOption />
+      <DetailContent />
+      <DetailReviewSwiper />
+      <DetailDelivery />
       <DetailRecommendProductSwipeWrap>
         추천상품 슬라이더
       </DetailRecommendProductSwipeWrap>
