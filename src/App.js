@@ -23,6 +23,7 @@ export default App;
 
 const WholeContainer = styled.div`
   width: 500px;
+  height: 100vh;
   margin: 0 auto;
   overflow-y: scroll;
 `;
