@@ -17,7 +17,6 @@ export default RegisterHeader;
 const Container = styled.header`
   display: flex;
   justify-content: space-between;
-
   .title {
     font-size: 1.5rem;
     font-weight: 700;

@@ -1,18 +1,48 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import styled from 'styled-components';
+
 import { AiOutlineCamera } from 'react-icons/ai';
 import { FaStar } from 'react-icons/fa';
 import ImagePreview from '../../molecules/register/ImagePreview';
 import ReviewInput from '../../atmoms/register/ReviewInput';
 
 function RegisterForm() {
+  const [files, setFiles] = useState(null);
+  const [image, setImage] = useState('');
+  const uploadRef = useRef();
+  console.log(files);
+
+  const imageUpload = () => {
+    uploadRef.current.click();
+  };
+  const onLoadFile = (e) => {
+    e.preventDefault();
+    const file = e.target.files[0];
+    const reader = new FileReader();
+
+    reader.onloadend = () => {
+      const base64 = reader.result;
+      if (base64) {
+        setImage(base64.toString());
+      }
+    };
+
+    if (file) {
+      reader.readAsDataURL(file);
+      setFiles(file);
+    }
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <Container>
-      <ImagePreview />
-      <form action="/" className="review-form">
+      <ImagePreview image={image} />
+      <form onSubmit={handleSubmit}>
         <Wrapper>
-          <StyledCamera />
-          <input id="inputFile" type="file" className="review-file" />
+          <StyledCamera onClick={imageUpload} />
+          <input type="file" ref={uploadRef} onChange={onLoadFile} />
           {Array.from({ length: 5 }, (_, idx) => idx + 1).map((el) => (
             <StyledStar key={el} />
           ))}
@@ -45,7 +75,8 @@ const StyledCamera = styled(AiOutlineCamera)`
 
 const StyledStar = styled(FaStar)`
   font-size: 1.5rem;
-  color: #fcc419;
+  color: #e6e6e6;
+  /* color: #fcc419; */
 `;
 
 const SubmitBtn = styled.button`
