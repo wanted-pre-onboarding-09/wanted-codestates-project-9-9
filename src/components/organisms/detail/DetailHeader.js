@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import LeftBtn from '../../asset/ic_left_btn.png';
-import CloseBtn from '../../asset/ic_can_btn.png';
+import LeftBtn from '../../../assets/ic_left_btn.png';
+import CloseBtn from '../../../assets/ic_can_btn.png';
 
 const DetailHeaderWrap = styled.div`
   width: 100%;
@@ -10,8 +10,8 @@ const DetailHeaderWrap = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  background: #bdbdbd;
-  padding: 10px 10px;
+  /* background: #bdbdbd; */
+  padding: 20px 20px;
 `;
 
 const LeftBtnWrap = styled.div`
