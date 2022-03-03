@@ -1,26 +1,33 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import { AiOutlineCamera } from 'react-icons/ai';
 import ImagePreview from '../../molecules/register/ImagePreview';
 import ReviewInput from '../../atmoms/register/ReviewInput';
 import Rating from '../../molecules/Rating';
+import { initializeForm } from '../../../store/form/formSlice';
+import { addReview } from '../../../store/review/reviewSlice';
 
 function RegisterForm() {
+  const { content } = useSelector(({ form }) => form);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [files, setFiles] = useState(null);
   const [image, setImage] = useState([]);
   const [rating, setRating] = useState(3);
   const starArr = [1, 2, 3, 4, 5];
   const uploadRef = useRef();
 
-  console.log(files);
+  console.log('content:', content);
+  console.log(files, rating);
 
   const imageUpload = () => {
     uploadRef.current.click();
   };
   const onLoadFile = (e) => {
     e.preventDefault();
-    // [...e.target.files].forEach((item) => console.log(item));
     const { files } = e.target;
 
     function readAndPreview(file) {
@@ -40,13 +47,28 @@ function RegisterForm() {
 
     if (files) {
       [].forEach.call(files, readAndPreview);
-      // [...file].forEach((item) => reader.readAsDataURL(item));
       setFiles(files);
     }
   };
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (rating === 0 || content === '' || image === null) {
+      alert('모든 항목을 기입하세요');
+      return;
+    }
+    dispatch(
+      addReview({
+        image,
+        rating,
+        content,
+      }),
+    );
+    navigate('/');
   };
+
+  useEffect(() => {
+    dispatch(initializeForm());
+  }, []);
 
   return (
     <Container>
@@ -70,7 +92,7 @@ function RegisterForm() {
             />
           ))}
         </Wrapper>
-        <ReviewInput />
+        <ReviewInput content={content} />
         <SubmitBtn type="submit">저장하기</SubmitBtn>
       </form>
     </Container>

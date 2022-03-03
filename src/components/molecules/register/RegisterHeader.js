@@ -1,13 +1,18 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { AiOutlineArrowLeft, AiOutlineClose } from 'react-icons/ai';
 import styled from 'styled-components';
 
 function RegisterHeader() {
   return (
     <Container>
-      <StyledArrow />
+      <Link to="/">
+        <StyledArrow />
+      </Link>
       <h2 className="title">리뷰 작성하기</h2>
-      <StyledClose />
+      <Link to="/">
+        <StyledClose />
+      </Link>
     </Container>
   );
 }

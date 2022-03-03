@@ -1,10 +1,11 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
+import { useDispatch } from 'react-redux';
+
+import PropTypes from 'prop-types';
 import { changeField } from '../../../store/form/formSlice';
 
-function ReviewInput() {
-  const { content } = useSelector(({ form }) => form.content);
+function ReviewInput({ content }) {
   const dispatch = useDispatch();
 
   const handleChangeText = (e) => {
@@ -19,6 +20,10 @@ function ReviewInput() {
     />
   );
 }
+
+ReviewInput.propTypes = {
+  content: PropTypes.string.isRequired,
+};
 
 export default ReviewInput;
 
