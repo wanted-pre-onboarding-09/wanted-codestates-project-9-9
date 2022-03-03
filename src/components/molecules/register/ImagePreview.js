@@ -6,7 +6,7 @@ function ImagePreview({ image, setImage }) {
   return (
     <ImgPreview image={image}>
       {image?.map((el) => (
-        <div key={el}>
+        <div key={el} className="image-wrapper">
           <img src={el} alt="image-preview" />
           <button
             type="button"
@@ -37,20 +37,24 @@ const ImgPreview = styled.div`
   width: 100%;
   min-height: 400px;
   height: auto;
-  display: ${({ image }) => (image?.length === 1 ? 'block' : 'grid')};
-  grid-template-columns: 1fr 1fr;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 1rem;
   border: 1px solid #000;
   border-radius: 15px;
   margin: 0 auto;
   padding: 1rem;
+  .image-wrapper {
+    width: 50%;
+    position: relative;
+  }
   img {
-    width: 200px;
+    width: 100%;
     height: 150px;
   }
   button {
-    position: relative;
-    top: -150px;
-    left: 180px;
+    position: absolute;
+    top: 0;
+    right: 0;
   }
 `;
