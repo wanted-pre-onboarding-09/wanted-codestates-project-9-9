@@ -5,6 +5,7 @@ import DetailPage from './components/pages/DetailPage';
 const WholeContainer = styled.div`
   display: flex;
   justify-content: center;
+  overflow-y: scroll;
 `;
 
 function App() {
