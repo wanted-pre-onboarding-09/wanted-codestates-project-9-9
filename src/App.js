@@ -1,7 +1,8 @@
 import React from 'react';
+import Register from './components/pages/Register';
 
 function App() {
-  return <h1>발란 사전 과제</h1>;
+  return <Register />;
 }
 
 export default App;
