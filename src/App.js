@@ -1,25 +1,18 @@
 import React from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-
-// const WholeContainer = styled.div`
-//   display: flex;
-//   justify-content: center;
-//   overflow-y: scroll;
-// `;
-
+import styled from 'styled-components';
 import DetailPage from './components/pages/DetailPage';
-import Home from './components/pages/Home';
-import Register from './components/pages/Register';
+
+const WholeContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  background: rgb(248 248 248);
+`;
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/detail/:id" element={<DetailPage />} />
-      </Routes>
-    </BrowserRouter>
+    <WholeContainer>
+      <DetailPage />
+    </WholeContainer>
   );
 }
 
