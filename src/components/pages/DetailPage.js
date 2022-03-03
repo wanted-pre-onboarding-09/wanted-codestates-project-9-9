@@ -1,5 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
+import DetailHeader from '../organisms/DetailHeader';
+import DetailTop from '../organisms/DetailTop';
+import DetailImg from '../organisms/DetailImg';
+import DetailButton from '../organisms/DetailButton';
 
 const DetailWrap = styled.div`
   width: 500px;
@@ -8,37 +12,13 @@ const DetailWrap = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  overflow: scroll;
+  overflow-y: scroll;
   ::-webkit-scrollbar {
     /* Chrome, Safari, Opera*/
     display: none;
   }
   -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none;
   background: #bdbdbd;
-`;
-
-const DetailHeader = styled.div`
-  width: 100%;
-  height: 78px;
-`;
-
-const DetailTop = styled.div`
-  width: 100%;
-  height: 75px;
-  background: #e6e6e6;
-`;
-
-const DetailImgWrap = styled.div`
-  width: 100%;
-  height: 666px;
-  background: #bdbdbd;
-`;
-
-const DetailButtonWrap = styled.div`
-  width: 100%;
-  height: 86px;
-  background: #e6e6e6;
 `;
 
 const DetailRatingWrap = styled.div`
@@ -80,10 +60,10 @@ const DetailRecommendProductSwipeWrap = styled.div`
 function DetailPage() {
   return (
     <DetailWrap>
-      <DetailHeader>리뷰 상세보기</DetailHeader>
-      <DetailTop>addoi230</DetailTop>
-      <DetailImgWrap>패션사진</DetailImgWrap>
-      <DetailButtonWrap>좋아요</DetailButtonWrap>
+      <DetailHeader />
+      <DetailTop />
+      <DetailImg />
+      <DetailButton />
       <DetailRatingWrap>별 다섯개</DetailRatingWrap>
       <DetailBuyOptionWrap>
         구매옵션명:화이트/화이트골드로고/36.5/몸무게
