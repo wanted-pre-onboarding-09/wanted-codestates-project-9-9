@@ -8,7 +8,7 @@ import ReviewInput from '../../atmoms/register/ReviewInput';
 
 function RegisterForm() {
   const [files, setFiles] = useState(null);
-  const [image, setImage] = useState('');
+  const [image, setImage] = useState([]);
   const uploadRef = useRef();
   console.log(files);
 
@@ -17,19 +17,28 @@ function RegisterForm() {
   };
   const onLoadFile = (e) => {
     e.preventDefault();
-    const file = e.target.files[0];
-    const reader = new FileReader();
+    // [...e.target.files].forEach((item) => console.log(item));
+    const { files } = e.target;
 
-    reader.onloadend = () => {
-      const base64 = reader.result;
-      if (base64) {
-        setImage(base64.toString());
-      }
-    };
+    function readAndPreview(file) {
+      const reader = new FileReader();
 
-    if (file) {
+      reader.onloadend = () => {
+        const base64 = reader.result;
+        if (base64) {
+          setImage((prev) => [...prev, base64]);
+        }
+      };
+      reader.onerror = (error) => {
+        console.error('Error: ', error);
+      };
       reader.readAsDataURL(file);
-      setFiles(file);
+    }
+
+    if (files) {
+      [].forEach.call(files, readAndPreview);
+      // [...file].forEach((item) => reader.readAsDataURL(item));
+      setFiles(files);
     }
   };
   const handleSubmit = (e) => {
@@ -38,11 +47,17 @@ function RegisterForm() {
 
   return (
     <Container>
-      <ImagePreview image={image} />
+      <ImagePreview image={image} setImage={setImage} />
       <form onSubmit={handleSubmit}>
         <Wrapper>
           <StyledCamera onClick={imageUpload} />
-          <input type="file" ref={uploadRef} onChange={onLoadFile} />
+          <input
+            type="file"
+            multiple
+            hidden
+            ref={uploadRef}
+            onChange={onLoadFile}
+          />
           {Array.from({ length: 5 }, (_, idx) => idx + 1).map((el) => (
             <StyledStar key={el} />
           ))}
@@ -63,14 +78,12 @@ const Container = styled.div`
 
 const Wrapper = styled.div`
   display: flex;
-  input[type='file'] {
-    display: none;
-  }
 `;
 
 const StyledCamera = styled(AiOutlineCamera)`
   font-size: 1.5rem;
   margin-right: 1.2rem;
+  cursor: pointer;
 `;
 
 const StyledStar = styled(FaStar)`
