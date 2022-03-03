@@ -1,18 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import ListPage from '../molecules/ListPage';
 
 const WholeContainer = styled.div`
-  display: flex;
+  /* display: flex;
   justify-content: center;
-  padding: 100px;
+  padding: 100px; */
 `;
 
 function Home() {
   return (
     <WholeContainer>
       <Link to="/">
-        <div>Home</div>
+        <ListPage />
+        {/* <div>ss</div> */}
       </Link>
       &times;
       <Link to="/detail">
