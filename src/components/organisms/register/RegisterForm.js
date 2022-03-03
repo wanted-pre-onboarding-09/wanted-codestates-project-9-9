@@ -7,7 +7,7 @@ import ReviewInput from '../../atmoms/register/ReviewInput';
 import Rating from '../../molecules/Rating';
 
 function RegisterForm() {
-  const [files, setFiles] = useState(null);
+  const [setFiles] = useState(null);
   const [image, setImage] = useState('');
   const [rating, setRating] = useState(3);
   const starArr = [1, 2, 3, 4, 5];
