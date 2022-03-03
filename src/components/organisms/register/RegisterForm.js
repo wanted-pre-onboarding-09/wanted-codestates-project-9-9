@@ -13,6 +13,7 @@ function RegisterForm() {
   const starArr = [1, 2, 3, 4, 5];
   const uploadRef = useRef();
 
+  console.log(files);
   const imageUpload = () => {
     uploadRef.current.click();
   };
