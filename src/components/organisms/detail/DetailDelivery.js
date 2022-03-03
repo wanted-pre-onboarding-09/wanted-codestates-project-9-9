@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import styled from 'styled-components';
 import DeliveryBox from '../../../assets/icon-box-20.webp';
@@ -22,11 +23,13 @@ const DeliveryImg = styled.img`
   margin-right: 0.3rem;
 `;
 
-function DetailDelivery() {
+function DetailDelivery({ data }) {
   return (
     <DetailDeliveryWrap>
       <DeliveryImg src={DeliveryBox} />
-      <div className="delivery-text">배송도착까지 17일 소요</div>
+      <div className="delivery-text">
+        배송도착까지 {data.deliveryDay}일 소요
+      </div>
     </DetailDeliveryWrap>
   );
 }

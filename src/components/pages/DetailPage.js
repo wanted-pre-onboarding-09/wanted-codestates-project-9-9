@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useSelector } from 'react-redux';
 import DetailHeader from '../organisms/detail/DetailHeader';
 import DetailTop from '../organisms/detail/DetailTop';
 import DetailImg from '../organisms/detail/DetailImg';
@@ -9,8 +10,10 @@ import DetailBuyOption from '../organisms/detail/DetailBuyOption';
 import DetailContent from '../organisms/detail/DetailContent';
 import DetailReviewSwiper from '../organisms/detail/DetailReviewSwiper';
 import DetailDelivery from '../organisms/detail/DetailDelivery';
+import ShareItems from '../atmoms/ShareItems';
 
 const DetailWrap = styled.div`
+  position: relative;
   max-width: 500px;
   min-height: 100vh;
   display: flex;
@@ -32,17 +35,25 @@ const DetailRecommendProductSwipeWrap = styled.div`
 `;
 
 function DetailPage() {
+  const detailPageData = useSelector((state) => state.detailData.data);
+  const modalValue = useSelector((state) => state.isOpenModal.openValue);
+
   return (
     <DetailWrap>
+      {modalValue ? <ShareItems /> : ''}
       <DetailHeader />
-      <DetailTop />
-      <DetailImg />
-      <DetailButton />
-      <DetailRating />
-      <DetailBuyOption />
-      <DetailContent />
-      <DetailReviewSwiper />
-      <DetailDelivery />
+      {detailPageData.map((dataset) => (
+        <>
+          <DetailTop data={dataset} />
+          <DetailImg data={dataset} />
+          <DetailButton data={dataset} />
+          <DetailRating data={dataset} />
+          <DetailBuyOption />
+          <DetailContent data={dataset} />
+          <DetailReviewSwiper />
+          <DetailDelivery data={dataset} />
+        </>
+      ))}
       <DetailRecommendProductSwipeWrap>
         추천상품 슬라이더
       </DetailRecommendProductSwipeWrap>

@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable array-callback-return */
 import React from 'react';
 import styled from 'styled-components';
@@ -31,8 +32,8 @@ const starArrayFunc = (xTrue, yFasle) => {
   return starArray;
 };
 
-function Dibs() {
-  const starArray = starArrayFunc(3, 2);
+function DetailRating({ data }) {
+  const starArray = starArrayFunc(data.rating, 5 - data.rating);
   return (
     <RatingStarWrap>
       {starArray.map((star) => {
@@ -42,4 +43,4 @@ function Dibs() {
   );
 }
 
-export default Dibs;
+export default DetailRating;

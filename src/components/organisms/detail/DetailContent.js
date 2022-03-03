@@ -1,6 +1,6 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import styled from 'styled-components';
-import dummyData from '../../../dummy/dummyData';
 
 const DetailContentWrap = styled.div`
   width: 100%;
@@ -18,11 +18,10 @@ const DetailContentWrap = styled.div`
   }
 `;
 
-function DetailContent() {
-  const { comments } = dummyData[0];
+function DetailContent({ data }) {
   return (
     <DetailContentWrap>
-      <div className="contet-text">{comments[0].content}</div>
+      <div className="contet-text">{data.contents}</div>
     </DetailContentWrap>
   );
 }
