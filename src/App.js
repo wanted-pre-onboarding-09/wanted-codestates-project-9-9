@@ -1,7 +1,18 @@
 import React from 'react';
+import styled from 'styled-components';
+import DetailPage from './components/pages/DetailPage';
+
+const WholeContainer = styled.div`
+  display: flex;
+  justify-content: center;
+`;
 
 function App() {
-  return <h1>발란 사전 과제</h1>;
+  return (
+    <WholeContainer>
+      <DetailPage />
+    </WholeContainer>
+  );
 }
 
 export default App;
