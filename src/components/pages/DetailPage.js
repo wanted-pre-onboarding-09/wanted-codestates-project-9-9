@@ -1,9 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import DetailHeader from '../organisms/DetailHeader';
 import DetailTop from '../organisms/DetailTop';
 import DetailImg from '../organisms/DetailImg';
 import DetailButton from '../organisms/DetailButton';
+import CommentContainer from '../organisms/CommentContainer';
 
 const DetailWrap = styled.div`
   width: 500px;
@@ -57,7 +59,13 @@ const DetailRecommendProductSwipeWrap = styled.div`
   background: #e6e6e6;
 `;
 
-function DetailPage() {
+const CommentWrapper = styled.div`
+  width: 100%;
+  padding: 18px 25px;
+  background-color: #f9f9f9;
+`;
+
+function DetailPage({ review }) {
   return (
     <DetailWrap>
       <DetailHeader />
@@ -76,8 +84,45 @@ function DetailPage() {
       <DetailRecommendProductSwipeWrap>
         추천상품 슬라이더
       </DetailRecommendProductSwipeWrap>
+      <CommentWrapper>
+        <CommentContainer review={review} />
+      </CommentWrapper>
     </DetailWrap>
   );
 }
+DetailPage.propTypes = {
+  review: PropTypes.shape({
+    postNumber: PropTypes.number,
+    nickName: PropTypes.string,
+    contents: PropTypes.string,
+    date: PropTypes.string,
+    reviewSize: PropTypes.arrayOf(
+      PropTypes.shape({
+        txt: PropTypes.string,
+        title: PropTypes.string,
+      }),
+    ),
+    img: PropTypes.arrayOf(PropTypes.string),
+    like: PropTypes.number,
+    rating: PropTypes.string,
+    deliveryDay: PropTypes.number,
+    comments: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number,
+        nickname: PropTypes.string,
+        date: PropTypes.string,
+        contents: PropTypes.string,
+        recomment: PropTypes.arrayOf(
+          PropTypes.shape({
+            id: PropTypes.number,
+            nickname: PropTypes.string,
+            date: PropTypes.string,
+            contents: PropTypes.string,
+          }),
+        ),
+      }),
+    ),
+  }).isRequired,
+};
 
 export default DetailPage;
