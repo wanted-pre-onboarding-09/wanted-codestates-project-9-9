@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { FaArrowUp } from 'react-icons/fa';
 import styled from 'styled-components';
 import ReviewList from '../atmoms/ReviewList';
@@ -42,16 +42,17 @@ const StyledButton = styled.button`
 `;
 
 function ListPage({ arr }) {
+  const topRef = useRef();
   const scrollToTop = () => {
-    window.scroll({ top: 0, behavior: 'smooth' });
+    topRef.current.offsetParent.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
-    <ListBox>
+    <ListBox ref={topRef}>
+      <StyledButton type="button" onClick={scrollToTop}>
+        <FaArrowUp className="arrowIcon" />
+      </StyledButton>
       <ViewBox>
-        <StyledButton type="button" onClick={scrollToTop}>
-          <FaArrowUp className="arrowIcon" />
-        </StyledButton>
         <ReviewList arr={arr} />
       </ViewBox>
     </ListBox>
