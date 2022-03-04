@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-// import InfiniteList from './InfiniteList';
 import ReviewList from '../atmoms/ReviewList';
 
 const ListBox = styled.div`
@@ -9,16 +8,15 @@ const ListBox = styled.div`
 `;
 
 const ViewBox = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-auto-rows: 8rem;
-  gap: 2px;
-
   & div {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-auto-rows: 8rem;
     gap: 2px;
+  }
+  & div img {
+    width: 100%;
+    height: 100%;
   }
 `;
 
@@ -27,7 +25,6 @@ function ListPage() {
     <ListBox>
       <ViewBox>
         <ReviewList />
-        {/* <InfiniteList /> */}
       </ViewBox>
     </ListBox>
   );

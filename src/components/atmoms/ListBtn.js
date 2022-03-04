@@ -1,16 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
 import gridIcon from '../../assets/gridIcon.png';
 import detailIcon from '../../assets/detailIcon.png';
 
-const BtnBox = styled.button`
+const BtnBox = styled.div`
   display: flex;
   width: 100%;
   font-size: 2rem;
 `;
 
-const ChangeBtn = styled.button`
+const ChangeBtn = styled.div`
   display: flex;
   justify-content: center;
   width: 50%;
@@ -23,13 +22,13 @@ const ChangeBtn = styled.button`
   }
 `;
 
-function ListBtn({ setPage }) {
+function ListBtn() {
   return (
     <BtnBox>
-      <ChangeBtn onClick={() => setPage(true)}>
+      <ChangeBtn>
         <img alt='"grid"' src={gridIcon} />
       </ChangeBtn>
-      <ChangeBtn onClick={() => setPage(false)}>
+      <ChangeBtn>
         <img alt='"detail"' src={detailIcon} />
       </ChangeBtn>
     </BtnBox>
@@ -37,7 +36,3 @@ function ListBtn({ setPage }) {
 }
 
 export default ListBtn;
-
-ListBtn.propTypes = {
-  setPage: PropTypes.func.isRequired,
-};
