@@ -40,16 +40,18 @@ const CommentWrapper = styled.div`
 
 function DetailPage() {
   const { id } = useParams();
-  console.log(id);
+
   const detailPageData = useSelector((state) => state.review.data);
   const modalValue = useSelector((state) => state.isOpenModal.openValue);
-
+  const filter = [
+    detailPageData.find((el) => Number(el.postNumber) === Number(id)),
+  ];
   return (
     <DetailWrap>
       <OneClickTop />
       {modalValue ? <ShareItems /> : ''}
       <DetailHeader />
-      {detailPageData.map((dataset) => (
+      {filter.map((dataset) => (
         <>
           <DetailTop data={dataset} />
           <DetailImg data={dataset} />
