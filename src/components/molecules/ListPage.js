@@ -41,7 +41,7 @@ const StyledButton = styled.button`
   }
 `;
 
-function ListPage() {
+function ListPage({ arr }) {
   const topRef = useRef();
   const scrollToTop = () => {
     topRef.current.offsetParent.scrollIntoView({ behavior: 'smooth' });
@@ -53,7 +53,7 @@ function ListPage() {
         <FaArrowUp className="arrowIcon" />
       </StyledButton>
       <ViewBox>
-        <ReviewList />
+        <ReviewList arr={arr} />
       </ViewBox>
     </ListBox>
   );

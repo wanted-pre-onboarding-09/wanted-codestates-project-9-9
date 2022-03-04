@@ -1,12 +1,6 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
-
-import {
-  latestOrder,
-  reviewOrder,
-  randomOrder,
-} from '../../store/review/reviewSlice';
+import PropTypes from 'prop-types';
 
 const FilterBox = styled.div`
   display: flex;
@@ -20,30 +14,26 @@ const FilterBtn = styled.button`
   border-radius: 20px;
   text-decoration-line: none;
 `;
-function Filter() {
-  const dispatch = useDispatch();
-  const clickLatestOrder = () => {
-    dispatch(latestOrder());
-  };
-  const clickReviewOrder = () => {
-    dispatch(reviewOrder());
-  };
-  const clickRandomOrder = () => {
-    dispatch(randomOrder());
-  };
-
+function Filter({ clickLatestOrder, clickReviewOrder, clickRandomOrder }) {
   return (
     <FilterBox>
-      <FilterBtn id="date" onClick={clickLatestOrder}>
+      <FilterBtn type="button" id="date" onClick={clickLatestOrder}>
         최신
       </FilterBtn>
-      <FilterBtn id="review" onClick={clickReviewOrder}>
+      <FilterBtn type="button" id="review" onClick={clickReviewOrder}>
         리뷰카운트순
       </FilterBtn>
-      <FilterBtn id="random" onClick={clickRandomOrder}>
+      <FilterBtn type="button" id="random" onClick={clickRandomOrder}>
         랜덤
       </FilterBtn>
     </FilterBox>
   );
 }
+
+Filter.propTypes = {
+  clickLatestOrder: PropTypes.func.isRequired,
+  clickReviewOrder: PropTypes.func.isRequired,
+  clickRandomOrder: PropTypes.func.isRequired,
+};
+
 export default Filter;

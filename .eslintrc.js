@@ -39,5 +39,8 @@ module.exports = {
     'jsx-a11y/img-redundant-alt': 'off',
     'react/no-array-index-key': 'off',
     'import/prefer-default-export': 'off',
+    'react/prop-types': 'off',
+    'import/no-named-as-default-member': 'off',
+    'import/no-named-as-default': 'off',
   },
 };
