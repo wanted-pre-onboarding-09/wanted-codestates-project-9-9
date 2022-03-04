@@ -17,6 +17,12 @@ const GlobalStyle = createGlobalStyle`
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+a, a:hover, a:visited, a:link, a:active
+{
+  color: #000;
+  text-decoration: none;
+}
+
 ul{
     list-style: none;
     padding: 0;
