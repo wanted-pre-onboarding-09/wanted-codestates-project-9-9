@@ -23,13 +23,21 @@ const ViewBox = styled.div`
 `;
 
 const StyledButton = styled.button`
-  position: sticky;
+  position: fixed;
   background-color: rgba(249, 249, 249, 1);
   border-radius: 0.8rem;
-  top: 90vh;
-  left: 100%;
+  top: 80%;
+  left: calc(100% - 45%);
   margin: 1rem;
   padding: 1rem;
+  transition: 0.5s;
+
+  @media only screen and (max-width: 1000px) {
+    left: calc(100% - 40%);
+  }
+  @media only screen and (max-width: 750px) {
+    left: calc(100% - 35%);
+  }
 
   .arrowIcon {
     color: black;
