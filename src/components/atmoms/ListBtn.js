@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
 import gridIcon from '../../assets/gridIcon.png';
 import detailIcon from '../../assets/detailIcon.png';
 
@@ -16,20 +15,35 @@ const ChangeBtn = styled.button`
   width: 50%;
   height: 4rem;
   align-items: center;
-
+  opacity: ${({ tab }) => {
+    return tab ? '1' : '0.5';
+  }};
+  border-bottom: ${({ tab }) => {
+    return tab ? '3px solid #000' : 'none';
+  }};
   img {
     width: 2rem;
     height: 2rem;
   }
 `;
 
-function ListBtn({ setPage }) {
+function ListBtn() {
+  const [grid, setGrid] = useState(true);
+  const [detail, setDetail] = useState(false);
+  const detailBtn = () => {
+    setDetail(true);
+    setGrid(false);
+  };
+  const gridBtn = () => {
+    setGrid(true);
+    setDetail(false);
+  };
   return (
     <BtnBox>
-      <ChangeBtn onClick={() => setPage(true)}>
+      <ChangeBtn tab={grid} onClick={gridBtn}>
         <img alt='"grid"' src={gridIcon} />
       </ChangeBtn>
-      <ChangeBtn onClick={() => setPage(false)}>
+      <ChangeBtn tab={detail} onClick={detailBtn}>
         <img alt='"detail"' src={detailIcon} />
       </ChangeBtn>
     </BtnBox>
@@ -37,7 +51,3 @@ function ListBtn({ setPage }) {
 }
 
 export default ListBtn;
-
-ListBtn.propTypes = {
-  setPage: PropTypes.func.isRequired,
-};
