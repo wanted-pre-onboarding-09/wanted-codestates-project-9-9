@@ -18,12 +18,19 @@ function CommentForm({ handleSubmit, handleRecomment }) {
     commentRef.current.value = '';
   };
 
+  const onKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      onSubmit();
+    }
+  };
+
   return (
     <CommentInput>
       <InputBox
         type="text"
         placeholder="wanted(으)로 답글 달기"
         ref={commentRef}
+        onKeyPress={onKeyPress}
       />
       <PostBtn type="button" onClick={onSubmit}>
         게시
