@@ -17,7 +17,6 @@ const reviewSlice = createSlice({
       const newReview = new Review(image, rating, content, state.totalCnt);
 
       state.data = [newReview, ...state.data];
-      console.log('state.data : ', state.data);
     },
     addComment: (state, action) => {
       const currentReview = state.data.filter(
