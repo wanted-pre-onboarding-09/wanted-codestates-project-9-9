@@ -1,7 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// import styled from 'styled-components';
-// import { FaStar } from 'react-icons/fa';
 import Star from '../atmoms/Star';
 
 function Rating({ active, num, setRating }) {
@@ -17,14 +15,6 @@ function Rating({ active, num, setRating }) {
 }
 
 export default Rating;
-
-// const StyledStar = styled(FaStar)`
-//   font-size: 1.5rem;
-//   color: ${({ active }) => {
-//     return active === 'true' ? `#fcc419` : 'gray';
-//   }};
-//   cursor: pointer;
-// `;
 
 Rating.propTypes = {
   active: PropTypes.string.isRequired,
