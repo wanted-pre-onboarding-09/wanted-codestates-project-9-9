@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-function CommentForm({ handleSubmit }) {
+function CommentForm({ handleSubmit, handleRecomment }) {
   const commentRef = useRef();
 
   const onSubmit = () => {
@@ -14,6 +14,7 @@ function CommentForm({ handleSubmit }) {
       recomment: [],
     };
     handleSubmit(newComment);
+    handleRecomment();
     commentRef.current.value = '';
   };
 
@@ -21,7 +22,7 @@ function CommentForm({ handleSubmit }) {
     <CommentInput>
       <InputBox
         type="text"
-        placeholder="홍길동(으)로 답글 달기"
+        placeholder="wanted(으)로 답글 달기"
         ref={commentRef}
       />
       <PostBtn type="button" onClick={onSubmit}>
@@ -35,6 +36,11 @@ export default CommentForm;
 
 CommentForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
+  handleRecomment: PropTypes.func,
+};
+
+CommentForm.defaultProps = {
+  handleRecomment: () => {},
 };
 
 const CommentInput = styled.div`

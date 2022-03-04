@@ -4,9 +4,18 @@ import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import CommentForm from './CommentForm';
 import { addRecomment } from '../../store/review/reviewSlice';
+import RecommentItem from './RecommentItem';
 
 function CommentItem({ comment, handleForm, review }) {
+  const [isComment, setIsComment] = useState(false);
+
+  const handleComment = () => {
+    setIsComment(!isComment);
+    handleForm();
+  };
+
   const dispatch = useDispatch();
+
   const handleRecommentSubmit = (newRecomment) => {
     dispatch(
       addRecomment({
@@ -15,12 +24,11 @@ function CommentItem({ comment, handleForm, review }) {
         newRecomment,
       }),
     );
-  };
-  // console.log(comment);
-  const [isRecomment, setIsRecomment] = useState(false);
-  const handleRecomment = () => {
-    setIsRecomment(!isRecomment);
+    setIsComment(false);
+    // setIsRecomment(false);
     handleForm();
+    // handleRecomment();
+    // handleComment();
   };
 
   return (
@@ -29,36 +37,27 @@ function CommentItem({ comment, handleForm, review }) {
       <CommentContent>{comment.contents}</CommentContent>
       <BottomBox>
         <CommentDate>{comment.date}</CommentDate>
-        <AddBtn type="button" onClick={handleRecomment}>
-          {isRecomment ? '답글 취소' : '답글 달기'}
+        <AddBtn type="button" onClick={handleComment}>
+          {isComment ? '답글 취소' : '답글 달기'}
         </AddBtn>
       </BottomBox>
       {comment.recomment && (
-        <div>
+        <>
           {comment.recomment.map((recomment) => (
-            <CommentBox key={recomment.id} padding="45px">
-              <Commenter>{recomment.nickname}</Commenter>
-              <CommentContent>{recomment.contents}</CommentContent>
-              <BottomBox>
-                <CommentDate>{recomment.date}</CommentDate>
-                <AddBtn type="button" onClick={handleRecomment}>
-                  {isRecomment ? '답글 취소' : '답글 달기'}
-                </AddBtn>
-              </BottomBox>
-              {isRecomment && (
-                <CommentForm handleSubmit={handleRecommentSubmit} />
-              )}
-            </CommentBox>
+            <RecommentItem
+              key={recomment.id}
+              recomment={recomment}
+              handleSubmit={handleRecommentSubmit}
+              handleForm={handleForm}
+            />
           ))}
-        </div>
+        </>
       )}
-      {isRecomment && <CommentForm handleSubmit={handleRecommentSubmit} />}
+      {isComment && <CommentForm handleSubmit={handleRecommentSubmit} />}
     </CommentBox>
   );
 }
-// {
-//   comment.recomment.map((el) => <p>{el.contents}</p>);
-// }
+
 export default CommentItem;
 
 CommentItem.propTypes = {
@@ -116,11 +115,11 @@ const CommentBox = styled.div`
   flex-direction: column;
   width: 100%;
   margin-bottom: 18px;
-  padding-left: ${(props) => props.padding};
   background-color: #f9f9f9;
 `;
 
 const Commenter = styled.span`
+  color: ${(props) => props.color};
   font-size: 20px;
   font-weight: 600;
   margin-right: 10px;
