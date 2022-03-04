@@ -8,7 +8,7 @@ const ImgBox = styled.img`
   height: 100%;
 `;
 
-const ReviewList = () => {
+function ReviewList() {
   const data = useSelector((review) => review.review.data);
 
   return data.map((item, i) => (
@@ -16,6 +16,6 @@ const ReviewList = () => {
       <ImgBox key={item.postNumber} alt={i} src={item.img[0]} />
     </Link>
   ));
-};
+}
 
 export default ReviewList;
