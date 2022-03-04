@@ -50,7 +50,7 @@ function DetailPage() {
       {modalValue ? <ShareItems /> : ''}
       <DetailHeader />
       {detailPageData.map((dataset) => (
-        <div key={dataset.postNumber}>
+        <>
           <DetailTop data={dataset} />
           <DetailImg data={dataset} />
           <DetailButton data={dataset} />
@@ -62,7 +62,7 @@ function DetailPage() {
           <CommentWrapper>
             <CommentContainer review={dataset} />
           </CommentWrapper>
-        </div>
+        </>
       ))}
     </DetailWrap>
   );
