@@ -1,8 +1,4 @@
 import React from 'react';
-<<<<<<< Updated upstream
-import { useDispatch } from 'react-redux';
-=======
->>>>>>> Stashed changes
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
@@ -18,22 +14,7 @@ const FilterBtn = styled.button`
   border-radius: 20px;
   text-decoration-line: none;
 `;
-<<<<<<< Updated upstream
-function Filter() {
-  const dispatch = useDispatch();
-  const clickLatestOrder = () => {
-    dispatch(latestOrder());
-  };
-  const clickReviewOrder = () => {
-    dispatch(reviewOrder());
-  };
-  const clickRandomOrder = () => {
-    dispatch(randomOrder());
-  };
-
-=======
 function Filter({ clickLatestOrder, clickReviewOrder, clickRandomOrder }) {
->>>>>>> Stashed changes
   return (
     <FilterBox>
       <FilterBtn id="date" onClick={clickLatestOrder}>
