@@ -13,21 +13,21 @@ const BackDropWrap = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  background: rgba(0, 0, 0, 0.1); // 투명 회색 효과
-  backdrop-filter: blur(5px); //blur 효과
-  z-index: 999;
   width: 100%;
   height: 100%;
+  background: rgba(0, 0, 0, 0.1); // 투명 회색 효과
+  backdrop-filter: blur(2px); //blur 효과
+  z-index: 998;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  padding-top: 20rem;
+  padding-top: 10rem;
 `;
 
 const DeliveryImg = styled.img`
   width: 4rem;
   margin-top: 2rem;
   border-radius: 0.9rem;
+  z-index: 999;
 `;
 
 function ShareItems() {
