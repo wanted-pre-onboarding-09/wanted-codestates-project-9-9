@@ -5,9 +5,6 @@ import { Review } from '../../lib/register/generateReview';
 const initialState = {
   data: mockData,
   totalCnt: 150261,
-  form: {
-    content: '',
-  },
 };
 
 const reviewSlice = createSlice({
@@ -85,7 +82,6 @@ const reviewSlice = createSlice({
 });
 
 export const {
-  initializeForm,
   addReview,
   addComment,
   addRecomment,

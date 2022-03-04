@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { latestOrder } from '../../store/review/reviewSlice';
 import Filter from '../atmoms/Filter';
 import ListPage from '../molecules/ListPage';
 import ListBtn from '../atmoms/ListBtn';
-// import DetailHeader from '../organisms/detail/DetailHeader';
 import DetailTop from '../organisms/detail/DetailTop';
 import DetailImg from '../organisms/detail/DetailImg';
 import DetailButton from '../organisms/detail/DetailButton';
@@ -23,10 +23,13 @@ const WholeContainer = styled.div`
 `;
 
 function Home() {
-  const [page, setPage] = useState(false);
+  const [page, setPage] = useState(true);
   const detailPageData = useSelector((state) => state.review.data);
   const modalValue = useSelector((state) => state.isOpenModal.openValue);
-
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(latestOrder());
+  }, []);
   if (page) {
     return (
       <WholeContainer>
