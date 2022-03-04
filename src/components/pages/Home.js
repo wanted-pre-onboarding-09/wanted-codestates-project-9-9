@@ -92,7 +92,7 @@ function Home() {
     </WholeContainer>
   );
 }
-export default Home;
+export default React.memo(Home);
 
 const DetailWrap = styled.div`
   position: relative;
