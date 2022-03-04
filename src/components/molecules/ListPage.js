@@ -10,6 +10,7 @@ const ListBox = styled.div`
 `;
 
 const ViewBox = styled.div`
+  position: relative;
   & div {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -23,13 +24,14 @@ const ViewBox = styled.div`
 `;
 
 const StyledButton = styled.button`
-  position: sticky;
+  position: fixed;
   background-color: rgba(249, 249, 249, 1);
   border-radius: 0.8rem;
-  top: 90vh;
-  left: 100%;
+  top: 82%;
+  left: 57%;
   margin: 1rem;
   padding: 1rem;
+  z-index: 999;
 
   .arrowIcon {
     color: black;
