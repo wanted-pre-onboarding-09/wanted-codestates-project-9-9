@@ -2,8 +2,6 @@ import faker from '@faker-js/faker';
 import dayjs from 'dayjs';
 
 export function Review(image, rating, content, totalCnt) {
-  console.log(image, rating, content);
-
   return {
     nickname: faker.name.findName(),
     postNumber: totalCnt,

@@ -19,9 +19,7 @@ function RegisterForm() {
   const [rating, setRating] = useState(3);
   const starArr = [1, 2, 3, 4, 5];
   const uploadRef = useRef();
-
-  console.log('content:', content);
-  console.log(files, rating);
+  console.log(files);
 
   const imageUpload = () => {
     uploadRef.current.click();

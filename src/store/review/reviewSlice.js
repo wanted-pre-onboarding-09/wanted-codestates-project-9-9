@@ -19,7 +19,7 @@ const reviewSlice = createSlice({
       const { image, rating, content } = action.payload;
       const newReview = new Review(image, rating, content, state.totalCnt);
 
-      state.data = [...state.data, newReview];
+      state.data = [newReview, ...state.data];
     },
     addComment: (state, action) => {
       const currentReview = state.data.filter(

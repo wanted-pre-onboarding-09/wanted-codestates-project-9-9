@@ -2,6 +2,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import DetailHeader from '../organisms/detail/DetailHeader';
 import DetailTop from '../organisms/detail/DetailTop';
 import DetailImg from '../organisms/detail/DetailImg';
@@ -38,6 +39,8 @@ const CommentWrapper = styled.div`
 `;
 
 function DetailPage() {
+  const { id } = useParams();
+  console.log(id);
   const detailPageData = useSelector((state) => state.review.data);
   const modalValue = useSelector((state) => state.isOpenModal.openValue);
 
@@ -47,7 +50,7 @@ function DetailPage() {
       {modalValue ? <ShareItems /> : ''}
       <DetailHeader />
       {detailPageData.map((dataset) => (
-        <>
+        <div key={dataset.postNumber}>
           <DetailTop data={dataset} />
           <DetailImg data={dataset} />
           <DetailButton data={dataset} />
@@ -59,7 +62,7 @@ function DetailPage() {
           <CommentWrapper>
             <CommentContainer review={dataset} />
           </CommentWrapper>
-        </>
+        </div>
       ))}
     </DetailWrap>
   );
