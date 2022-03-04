@@ -4,13 +4,13 @@ import styled from 'styled-components';
 import gridIcon from '../../assets/gridIcon.png';
 import detailIcon from '../../assets/detailIcon.png';
 
-const BtnBox = styled.button`
+const BtnBox = styled.div`
   display: flex;
   width: 100%;
   font-size: 2rem;
 `;
 
-const ChangeBtn = styled.button`
+const ChangeBtn = styled.div`
   display: flex;
   justify-content: center;
   width: 50%;

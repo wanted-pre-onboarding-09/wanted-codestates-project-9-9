@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
 import { RotatingLines } from 'react-loader-spinner';
 import { latestOrder } from '../../store/review/reviewSlice';
@@ -107,6 +107,7 @@ export default Home;
 //   }
 //   -ms-overflow-style: none; /* IE and Edge */
 // `;
+
 const WholeContainer = styled.div`
   display: flex;
   flex-direction: column;
