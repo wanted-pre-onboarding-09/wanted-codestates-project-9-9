@@ -41,7 +41,7 @@ const StyledButton = styled.button`
   }
 `;
 
-function ListPage() {
+function ListPage({ arr }) {
   const scrollToTop = () => {
     window.scroll({ top: 0, behavior: 'smooth' });
   };
@@ -52,7 +52,7 @@ function ListPage() {
         <StyledButton type="button" onClick={scrollToTop}>
           <FaArrowUp className="arrowIcon" />
         </StyledButton>
-        <ReviewList />
+        <ReviewList arr={arr} />
       </ViewBox>
     </ListBox>
   );

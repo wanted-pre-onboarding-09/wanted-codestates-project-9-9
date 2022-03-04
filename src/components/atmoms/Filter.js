@@ -17,13 +17,13 @@ const FilterBtn = styled.button`
 function Filter({ clickLatestOrder, clickReviewOrder, clickRandomOrder }) {
   return (
     <FilterBox>
-      <FilterBtn id="date" onClick={clickLatestOrder}>
+      <FilterBtn type="button" id="date" onClick={clickLatestOrder}>
         최신
       </FilterBtn>
-      <FilterBtn id="review" onClick={clickReviewOrder}>
+      <FilterBtn type="button" id="review" onClick={clickReviewOrder}>
         리뷰카운트순
       </FilterBtn>
-      <FilterBtn id="random" onClick={clickRandomOrder}>
+      <FilterBtn type="button" id="random" onClick={clickRandomOrder}>
         랜덤
       </FilterBtn>
     </FilterBox>
