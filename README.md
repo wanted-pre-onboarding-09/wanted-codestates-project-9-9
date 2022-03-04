@@ -5,11 +5,11 @@
 ## 프로젝트 소개
 
 - 고객이 리뷰를 등록 하고 리뷰를 확인할 수 있는 페이지 제작
-- 기간: 22.03.3~22.03.04
+- 기간: 22.03.03~22.03.04
 
 ## 배포링크
 
-[🚀💾 Demo Link ]
+[🚀💾 Demo Link ] (https://balaan9.netlify.app/)
 
 ## 팀원 소개
 
@@ -29,24 +29,23 @@
 ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
 ![Redux](https://img.shields.io/badge/redux-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white)
-
+![Styled Components](https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white)
 <br/>
 
 ## 요구사항
 
 - 리뷰 등록 페이지
-    - 리뷰 제목, 이미지 선택 , 평점(별점 5점 만점) 등록
-    - 리뷰등록 페이지는 등록(입력) 기능만 있는 **간단한 페이지로 구현** 합니다.
+  - 리뷰 제목, 이미지 선택 , 평점(별점 5점 만점) 등록
+  - 리뷰등록 페이지는 등록(입력) 기능만 있는 **간단한 페이지로 구현** 합니다.
 - 리뷰 리스트 페이지
-    - 리뷰리스트 무한 스크롤
-    - 정렬(최신순, 리뷰카운트순, 랜덤 정렬)
-    - 리뷰 목록 표시 형태 선택(그리드 뷰, 리스트 뷰)
+  - 리뷰리스트 무한 스크롤
+  - 정렬(최신순, 리뷰카운트순, 랜덤 정렬)
+  - 리뷰 목록 표시 형태 선택(그리드 뷰, 리스트 뷰)
 - 리뷰 상세 페이지
-    - 리뷰 상세 이미지
-    - 리뷰 댓글 달기
-    - 좋아요
-    - 링크 공유
-
+  - 리뷰 상세 이미지
+  - 리뷰 댓글 달기
+  - 좋아요
+  - 링크 공유
 
 ## 디렉터리 구조
 
@@ -150,9 +149,28 @@
             reviewSlice.js
 ```
 
+### 유송현
+
+### 서한석
+
+### 이지수
+
+### 손영산
+
+### 윤솔비
+
+- 상세페이지 댓글과 대댓글 추가 구현
+  - 댓글 추가: 어느 리뷰에 해당하는 댓글인지 찾기 위해 일단 `postNumber`를 받아와 `filter` 함수로 해당 리뷰를 찾아줬다. 해당 리뷰에 `action.patload.newComment`에 값을 넣어줬다.
+  - 대댓글 추가: 어느 리뷰에 해당하는 대댓글인지 찾기 위해 현재 어떤 리뷰인지를 찾아 `currentReview`에 넣어주었다. 그 리뷰의 어느 댓글인지를 찾기 위해 `commentId`를 받아 `filter` 함수로 해당 대댓글을 찾아줬다. 해당 대댓글에 `action.payload.newRecomment`를 넣어줬다.
+
+### 이지수
+
+### 조영제
+
 ## 실행 방법
 
 ```
+npm i
 npm start
 ```
 
