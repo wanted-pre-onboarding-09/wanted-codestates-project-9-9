@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 
 import {
@@ -21,20 +21,15 @@ const FilterBtn = styled.button`
   text-decoration-line: none;
 `;
 function Filter() {
-  const data = useSelector((state) => state.review.data);
-
   const dispatch = useDispatch();
   const clickLatestOrder = () => {
     dispatch(latestOrder());
-    console.log(data);
   };
   const clickReviewOrder = () => {
     dispatch(reviewOrder());
-    console.log(data);
   };
   const clickRandomOrder = () => {
     dispatch(randomOrder());
-    console.log(data);
   };
 
   return (
