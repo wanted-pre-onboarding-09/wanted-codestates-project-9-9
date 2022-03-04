@@ -3,18 +3,19 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Filter from '../atmoms/Filter';
 import ListPage from '../molecules/ListPage';
-
-const WholeContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
+import RegisterButton from '../atmoms/register/RegisterButton';
 
 function Home() {
   // const reviews = useSelector(({ review }) => review.data);
   return (
     <WholeContainer>
       <Link to="/">{/* <div>ss</div> */}</Link>
-      <Filter />
+      <Wrapper>
+        <Filter />
+        <Link to="/register">
+          <RegisterButton />
+        </Link>
+      </Wrapper>
       <ListPage />
       &times;
       <Link to="/detail">
@@ -31,3 +32,14 @@ function Home() {
   );
 }
 export default Home;
+
+const WholeContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const Wrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
