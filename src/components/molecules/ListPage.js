@@ -10,16 +10,15 @@ const ListBox = styled.div`
 `;
 
 const ViewBox = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-auto-rows: 8rem;
-  gap: 2px;
-
   & div {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-auto-rows: 8rem;
     gap: 2px;
+  }
+  & div img {
+    width: 100%;
+    height: 100%;
   }
 `;
 
