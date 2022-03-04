@@ -50,8 +50,7 @@ const ImgBox = styled.img`
 
 function ListPage() {
   const [changeList, setChangeList] = useState('grid');
-  const [list, setList] = useState([]);
-  console.log(list);
+  const [setList] = useState([]);
   useEffect(() => {
     document.querySelector('#grid').style.opacity = '1';
     document.querySelector('#grid').style.borderBottom = '3px solid black';
