@@ -13,7 +13,7 @@ function InfiniteList({ reviews }) {
   };
 
   const onIntersect = ([entry]) => {
-    if (entry.isIntersecting) {
+    if (entry.isIntersecting && entry.boundingClientRect.y > 0) {
       getMoreItems();
       dataIndex.current += 20;
     }
@@ -40,9 +40,8 @@ function InfiniteList({ reviews }) {
             key={data.postNumber}
             data={data}
             src={data.img[0]}
-            alt={data.postNumber}
+            alt="리뷰 사진"
           />
-          <div> </div>
         </Link>
       ))}
     </DataContainer>
