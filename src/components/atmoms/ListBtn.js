@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import gridIcon from '../../assets/gridIcon.png';
 import detailIcon from '../../assets/detailIcon.png';
@@ -21,22 +22,25 @@ const ChangeBtn = styled.button`
   border-bottom: ${({ tab }) => {
     return tab ? '3px solid #000' : 'none';
   }};
+  cursor: pointer;
   img {
     width: 2rem;
     height: 2rem;
   }
 `;
 
-function ListBtn() {
+function ListBtn({ setPage }) {
   const [grid, setGrid] = useState(true);
   const [detail, setDetail] = useState(false);
   const detailBtn = () => {
     setDetail(true);
     setGrid(false);
+    setPage(false);
   };
   const gridBtn = () => {
     setGrid(true);
     setDetail(false);
+    setPage(true);
   };
   return (
     <BtnBox>
@@ -49,5 +53,9 @@ function ListBtn() {
     </BtnBox>
   );
 }
+
+ListBtn.propTypes = {
+  setPage: PropTypes.func.isRequired,
+};
 
 export default ListBtn;
