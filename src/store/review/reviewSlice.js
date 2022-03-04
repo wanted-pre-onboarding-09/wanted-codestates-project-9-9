@@ -1,19 +1,22 @@
 import { createSlice } from '@reduxjs/toolkit';
 import mockData from '../../data.json';
+import { Review } from '../../lib/register/generateReview';
 
 const initialState = {
   data: mockData,
-  form: {
-    content: '',
-  },
+  totalCnt: 150261,
 };
 
 const reviewSlice = createSlice({
   name: 'review',
   initialState,
   reducers: {
-    initializeForm(state) {
-      state.form.content = initialState.form.content;
+    addReview(state, action) {
+      state.totalCnt += 1;
+      const { image, rating, content } = action.payload;
+      const newReview = new Review(image, rating, content, state.totalCnt);
+
+      state.data = [...state.data, newReview];
     },
     addComment: (state, action) => {
       const currentReview = state.data.filter(

@@ -1,50 +1,88 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import { AiOutlineCamera } from 'react-icons/ai';
 import ImagePreview from '../../molecules/register/ImagePreview';
 import ReviewInput from '../../atmoms/register/ReviewInput';
 import Rating from '../../molecules/Rating';
+import { initializeForm } from '../../../store/form/formSlice';
+import { addReview } from '../../../store/review/reviewSlice';
 
 function RegisterForm() {
+  const { content } = useSelector(({ form }) => form);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [files, setFiles] = useState(null);
-  const [image, setImage] = useState('');
+  const [image, setImage] = useState([]);
   const [rating, setRating] = useState(3);
   const starArr = [1, 2, 3, 4, 5];
   const uploadRef = useRef();
 
-  console.log(files);
+  console.log('content:', content);
+  console.log(files, rating);
+
   const imageUpload = () => {
     uploadRef.current.click();
   };
   const onLoadFile = (e) => {
     e.preventDefault();
-    const file = e.target.files[0];
-    const reader = new FileReader();
+    const { files } = e.target;
 
-    reader.onloadend = () => {
-      const base64 = reader.result;
-      if (base64) {
-        setImage(base64.toString());
-      }
-    };
+    function readAndPreview(file) {
+      const reader = new FileReader();
 
-    if (file) {
+      reader.onloadend = () => {
+        const base64 = reader.result;
+        if (base64) {
+          setImage((prev) => [...prev, base64]);
+        }
+      };
+      reader.onerror = (error) => {
+        console.error('Error: ', error);
+      };
       reader.readAsDataURL(file);
-      setFiles(file);
+    }
+
+    if (files) {
+      [].forEach.call(files, readAndPreview);
+      setFiles(files);
     }
   };
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (rating === 0 || content === '' || image === null) {
+      alert('모든 항목을 기입하세요');
+      return;
+    }
+    dispatch(
+      addReview({
+        image,
+        rating,
+        content,
+      }),
+    );
+    navigate('/');
   };
+
+  useEffect(() => {
+    dispatch(initializeForm());
+  }, []);
 
   return (
     <Container>
-      <ImagePreview image={image} />
+      <ImagePreview image={image} setImage={setImage} />
       <form onSubmit={handleSubmit}>
         <Wrapper>
           <StyledCamera onClick={imageUpload} />
-          <input type="file" ref={uploadRef} onChange={onLoadFile} />
+          <input
+            type="file"
+            multiple
+            hidden
+            ref={uploadRef}
+            onChange={onLoadFile}
+          />
           {starArr.map((el) => (
             <Rating
               key={el}
@@ -54,7 +92,7 @@ function RegisterForm() {
             />
           ))}
         </Wrapper>
-        <ReviewInput />
+        <ReviewInput content={content} />
         <SubmitBtn type="submit">저장하기</SubmitBtn>
       </form>
     </Container>
@@ -70,14 +108,12 @@ const Container = styled.div`
 
 const Wrapper = styled.div`
   display: flex;
-  input[type='file'] {
-    display: none;
-  }
 `;
 
 const StyledCamera = styled(AiOutlineCamera)`
   font-size: 1.5rem;
   margin-right: 1.2rem;
+  cursor: pointer;
 `;
 
 const SubmitBtn = styled.button`
