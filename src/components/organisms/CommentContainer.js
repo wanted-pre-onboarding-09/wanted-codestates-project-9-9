@@ -46,8 +46,8 @@ CommentContainer.propTypes = {
     ),
     img: PropTypes.arrayOf(PropTypes.string),
     like: PropTypes.number,
-    rating: PropTypes.string,
-    deliveryDay: PropTypes.number,
+    rating: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    deliveryDay: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     comments: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.number,
