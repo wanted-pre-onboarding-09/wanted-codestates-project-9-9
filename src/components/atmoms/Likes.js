@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import {
   increaseLikesNumber,
   decreaseLikesNumber,
-} from '../../store/detailPageData';
+} from '../../store/review/reviewSlice';
 import EmptyHand from '../../assets/like_hand.png';
 import FillHand from '../../assets/like-hand-fill.png';
 
