@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { RotatingLines } from 'react-loader-spinner';
 
 import Filter from '../atmoms/Filter';
@@ -21,29 +21,32 @@ import DetailDelivery from '../organisms/detail/DetailDelivery';
 import CommentContainer from '../organisms/CommentContainer';
 
 import ListPage from '../molecules/ListPage';
+import {
+  latestOrder,
+  reviewOrder,
+  randomOrder,
+} from '../../store/review/reviewSlice';
 
 function Home() {
   const [page, setPage] = useState(true);
   const detailPageData = useSelector((state) => state.review.data);
   const modalValue = useSelector((state) => state.isOpenModal.openValue);
-  const [arr, setArr] = useState([...detailPageData]);
-
   const [loading, setLoading] = useState(true);
+  const dispatch = useDispatch();
 
   const clickLatestOrder = () => {
-    setArr([...arr.sort((a, b) => b.postNumber - a.postNumber)]);
+    dispatch(latestOrder());
   };
   const clickReviewOrder = () => {
-    setArr([...arr.sort((a, b) => b.comments.length - a.comments.length)]);
+    dispatch(reviewOrder());
   };
   const clickRandomOrder = () => {
-    setArr([...arr.sort(() => Math.random() - Math.random())]);
+    dispatch(randomOrder());
   };
 
   useEffect(() => {
     const loader = setTimeout(() => setLoading(!loading), 3000);
     clickLatestOrder();
-
     return () => clearTimeout(loader);
   }, []);
 
@@ -66,7 +69,7 @@ function Home() {
             <RotatingLines />
           </div>
         ) : (
-          <ListPage arr={arr} />
+          <ListPage arr={detailPageData} />
         )}
       </WholeContainer>
     );
@@ -92,7 +95,7 @@ function Home() {
             <RotatingLines />
           </div>
         ) : (
-          arr.map((dataset) => (
+          detailPageData.map((dataset) => (
             <>
               <DetailTop data={dataset} />
               <DetailImg data={dataset} />
@@ -112,7 +115,7 @@ function Home() {
     </WholeContainer>
   );
 }
-export default React.memo(Home);
+export default Home;
 
 const DetailWrap = styled.div`
   position: relative;
