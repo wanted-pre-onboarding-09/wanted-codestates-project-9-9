@@ -1,18 +1,21 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-// import { useSelector } from 'react-redux';
+import Filter from '../atmoms/Filter';
 import ListPage from '../molecules/ListPage';
-// import DetailPage from './DetailPage';
+
+const WholeContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 
 function Home() {
   // const reviews = useSelector(({ review }) => review.data);
   return (
     <WholeContainer>
-      <Link to="/">
-        <ListPage />
-        {/* <div>ss</div> */}
-      </Link>
+      <Link to="/">{/* <div>ss</div> */}</Link>
+      <Filter />
+      <ListPage />
       &times;
       <Link to="/detail">
         {/* <WholeContainer> */}
@@ -24,9 +27,7 @@ function Home() {
         {/* </WholeContainer> */}
       </Link>
     </WholeContainer>
+    // import InfiniteList from '../molecules/InfiniteList';
   );
 }
-
 export default Home;
-
-const WholeContainer = styled.div``;
