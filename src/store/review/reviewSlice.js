@@ -32,9 +32,39 @@ const reviewSlice = createSlice({
 
       currentComment[0].recomment.push(action.payload.newRecomment);
     },
+    increaseLikesNumber(state, action) {
+      const initState = [...state.data];
+
+      const dataset = initState.map((el) => {
+        if (el.postNumber === action.payload) {
+          // eslint-disable-next-line no-return-assign
+          return { ...el, like: (el.like += 1), clicked: true };
+        }
+        return el;
+      });
+      state.data = dataset;
+    },
+    decreaseLikesNumber(state, action) {
+      const initState = [...state.data];
+
+      const dataset = initState.map((el) => {
+        if (el.postNumber === action.payload) {
+          // eslint-disable-next-line no-return-assign
+          return { ...el, like: (el.like -= 1), clicked: false };
+        }
+        return el;
+      });
+      state.data = dataset;
+    },
   },
   extraReducers: {},
 });
 
-export const { initializeForm, addComment, addRecomment } = reviewSlice.actions;
+export const {
+  initializeForm,
+  addComment,
+  addRecomment,
+  increaseLikesNumber,
+  decreaseLikesNumber,
+} = reviewSlice.actions;
 export default reviewSlice.reducer;

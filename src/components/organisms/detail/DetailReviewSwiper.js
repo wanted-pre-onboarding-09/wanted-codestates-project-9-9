@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import styled from 'styled-components';
 
@@ -6,8 +8,17 @@ const DetailReviewSwiperWrap = styled.div`
   min-height: 33px;
   display: flex;
   align-items: center;
+  flex-direction: row;
   padding: 20px 20px;
   /* background: #e6e6e6; */
+  min-width: 100%;
+  overflow-x: scroll;
+  ::-webkit-scrollbar {
+    /* Chrome, Safari, Opera*/
+    display: none;
+  }
+  -ms-overflow-style: none; /* IE and Edge */
+
   > .content-title {
     border: 1px solid #999;
     border-radius: 1.1rem;
@@ -15,6 +26,12 @@ const DetailReviewSwiperWrap = styled.div`
     min-height: 1rem;
     line-height: 1rem;
     margin-right: 1rem;
+    min-width: 14rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
     > .content-que {
       color: #666;
       font-size: 0.9rem;
@@ -27,17 +44,17 @@ const DetailReviewSwiperWrap = styled.div`
   }
 `;
 
-function DetailReviewSwiper() {
+function DetailReviewSwiper({ data }) {
   return (
     <DetailReviewSwiperWrap>
-      <div className="content-title">
-        <span className="content-que">사이즈는 어떤가요?</span>
-        <span className="content-ans">정사이즈예요</span>
-      </div>
-      <div className="content-title">
-        <span className="content-que">색상은 어떤가요?</span>
-        <span className="content-ans">화면과 같아요</span>
-      </div>
+      {data.reviewSize.map((review) => {
+        return (
+          <div className="content-title">
+            <span className="content-que">{review.title}</span>
+            <span className="content-ans">{review.txt}</span>
+          </div>
+        );
+      })}
     </DetailReviewSwiperWrap>
   );
 }

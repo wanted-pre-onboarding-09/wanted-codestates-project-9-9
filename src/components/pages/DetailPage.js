@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import React from 'react';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
@@ -11,6 +12,8 @@ import DetailContent from '../organisms/detail/DetailContent';
 import DetailReviewSwiper from '../organisms/detail/DetailReviewSwiper';
 import DetailDelivery from '../organisms/detail/DetailDelivery';
 import ShareItems from '../atmoms/ShareItems';
+import OneClickTop from '../atmoms/OneClickTop';
+import CommentContainer from '../organisms/CommentContainer';
 
 const DetailWrap = styled.div`
   position: relative;
@@ -27,18 +30,20 @@ const DetailWrap = styled.div`
   }
   -ms-overflow-style: none; /* IE and Edge */
 `;
-const DetailRecommendProductSwipeWrap = styled.div`
+
+const CommentWrapper = styled.div`
   width: 100%;
-  min-height: 315px;
-  background: #e6e6e6;
+  padding: 18px 25px;
+  background-color: #f9f9f9;
 `;
 
 function DetailPage() {
-  const detailPageData = useSelector((state) => state.detailData.data);
+  const detailPageData = useSelector((state) => state.review.data);
   const modalValue = useSelector((state) => state.isOpenModal.openValue);
 
   return (
     <DetailWrap>
+      <OneClickTop />
       {modalValue ? <ShareItems /> : ''}
       <DetailHeader />
       {detailPageData.map((dataset) => (
@@ -49,13 +54,13 @@ function DetailPage() {
           <DetailRating data={dataset} />
           <DetailBuyOption />
           <DetailContent data={dataset} />
-          <DetailReviewSwiper />
+          <DetailReviewSwiper data={dataset} />
           <DetailDelivery data={dataset} />
+          <CommentWrapper>
+            <CommentContainer review={dataset} />
+          </CommentWrapper>
         </>
       ))}
-      <DetailRecommendProductSwipeWrap>
-        추천상품 슬라이더
-      </DetailRecommendProductSwipeWrap>
     </DetailWrap>
   );
 }
