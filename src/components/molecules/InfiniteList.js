@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import reviews from '../../data.json';
+/* eslint react/prop-types: 0 */
 
-function InfiniteList() {
+function InfiniteList({ reviews }) {
   const items = useRef();
   const dataIndex = useRef(20);
   const [dataList, setDataList] = useState(reviews.slice(0, 20));
@@ -37,7 +37,7 @@ function InfiniteList() {
       {dataList.map((data) => (
         <Link to={`/detail/${data.postNumber}`}>
           <Datalist
-            key={data.productId}
+            key={data.postNumber}
             data={data}
             src={data.img[0]}
             alt={data.postNumber}
