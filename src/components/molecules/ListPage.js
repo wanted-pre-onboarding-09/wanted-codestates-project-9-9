@@ -1,8 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-// import InfiniteList from './InfiniteList';
 import ReviewList from '../atmoms/ReviewList';
-import ListBtn from '../atmoms/ListBtn';
 
 const ListBox = styled.div`
   width: 100%;
@@ -25,10 +23,8 @@ const ViewBox = styled.div`
 function ListPage() {
   return (
     <ListBox>
-      <ListBtn />
       <ViewBox>
         <ReviewList />
-        {/* <InfiniteList /> */}
       </ViewBox>
     </ListBox>
   );
