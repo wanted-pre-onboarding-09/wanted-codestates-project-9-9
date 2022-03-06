@@ -157,6 +157,71 @@
 
 ### 손영산
 
+- 이미지 업로드와 이미지 미리보기 기능 구현
+  - 단일 이미지 업로드의 미리보기만 구현했을 때는 하나의 이미지 데이터만 처리해주면 되었기 때문에 그렇게 복잡하지 않았지만 여러 개의 이미지에 대한 미리보기를 구현할때는 이미지 데이터를 처리해주는 과정이 복잡해서 이해가 되지 않았다.
+  - MDN 문서에 `FileReader` 의 `readAsDataURL` 메서드를 사용하는 예제들을 찾아보면서 바닐라 자바스크립트로 구현된 로직을 리액트스러운 로직으로 변경해 구현
+    
+    ```jsx
+    // MDN 다중 이미지 미리보기 예제
+    function previewFiles() {
+    
+      var preview = document.querySelector('#preview');
+      var files   = document.querySelector('input[type=file]').files;
+    
+      function readAndPreview(file) {
+    
+        // `file.name` 형태의 확장자 규칙에 주의하세요
+        if ( /\.(jpe?g|png|gif)$/i.test(file.name) ) {
+          var reader = new FileReader();
+    
+          reader.addEventListener("load", function () {
+            var image = new Image();
+            image.height = 100;
+            image.title = file.name;
+            image.src = this.result;
+            preview.appendChild( image );
+          }, false);
+    
+          reader.readAsDataURL(file);
+        }
+    
+      }
+    
+      if (files) {
+        [].forEach.call(files, readAndPreview);
+      }
+    
+    }
+    ```
+    
+    ```jsx
+    // 과제에 적용한 다중 이미지 미리보기 로직
+    const onLoadFile = (e) => {
+        e.preventDefault();
+        const { files } = e.target;
+    
+        function readAndPreview(file) {
+          const reader = new FileReader();
+    
+          reader.onloadend = () => {
+            const base64 = reader.result;
+            if (base64) {
+              setImage((prev) => [...prev, base64]);
+            }
+          };
+          reader.onerror = (error) => {
+            console.error('Error: ', error);
+          };
+          reader.readAsDataURL(file);
+        }
+    
+        if (files) {
+          [].forEach.call(files, readAndPreview);
+          setFiles(files);
+        }
+      };
+    ```
+
 ### 윤솔비
 
 - 상세페이지 댓글과 대댓글 추가 구현
