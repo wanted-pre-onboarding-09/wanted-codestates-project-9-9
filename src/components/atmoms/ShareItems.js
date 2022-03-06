@@ -10,24 +10,34 @@ import shareTw from '../../assets/btn_share_tw.png';
 import shareUrl from '../../assets/btn_share_url.png';
 
 const BackDropWrap = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
+  position: fixed;
+  top: 0%;
+  width: 500px;
   height: 100%;
   background: rgba(0, 0, 0, 0.1); // 투명 회색 효과
   backdrop-filter: blur(2px); //blur 효과
-  z-index: 998;
-  display: flex;
-  align-items: center;
+  z-index: 997;
   padding-top: 10rem;
+`;
+
+const DeliveryImgWrap = styled.div`
+  position: absolute;
+  top: 30%;
+  left: 43%;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
 `;
 
 const DeliveryImg = styled.img`
   width: 4rem;
-  margin-top: 2rem;
-  border-radius: 0.9rem;
+  height: 4rem;
+  border-radius: 0.6rem;
   z-index: 999;
+  margin: 0.5rem;
+  background: transparent;
 `;
 
 function ShareItems() {
@@ -39,11 +49,13 @@ function ShareItems() {
   };
   return (
     <BackDropWrap onClick={handleModal}>
-      <DeliveryImg src={shareFb} />
-      <DeliveryImg src={shareKt} />
-      <DeliveryImg src={shareTw} />
-      <DeliveryImg src={shareKs} />
-      <DeliveryImg src={shareUrl} />
+      <DeliveryImgWrap>
+        <DeliveryImg src={shareFb} />
+        <DeliveryImg src={shareKt} />
+        <DeliveryImg src={shareTw} />
+        <DeliveryImg src={shareKs} />
+        <DeliveryImg src={shareUrl} />
+      </DeliveryImgWrap>
     </BackDropWrap>
   );
 }

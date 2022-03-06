@@ -114,6 +114,8 @@ const WholeContainer = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
+  box-shadow: 3px 3px 3px 3px gray;
+  margin-top: 5px;
 
   .loading-spinner__wrapper {
     position: absolute;
