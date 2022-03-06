@@ -5,9 +5,6 @@ import { Review } from '../../lib/register/generateReview';
 const initialState = {
   data: mockData,
   totalCnt: 150261,
-  form: {
-    content: '',
-  },
 };
 
 const reviewSlice = createSlice({
@@ -62,30 +59,22 @@ const reviewSlice = createSlice({
       });
       state.data = dataset;
     },
-    initializeForm(state) {
-      state.form.content = initialState.form.content;
-    },
     latestOrder(state) {
-      state.data = [...initialState.data].sort(
-        (a, b) => b.postNumber - a.postNumber,
-      );
+      state.data = [...state.data].sort((a, b) => b.postNumber - a.postNumber);
     },
     reviewOrder(state) {
-      state.data = [...initialState.data].sort(
+      state.data = [...state.data].sort(
         (a, b) => b.comments.length - a.comments.length,
       );
     },
     randomOrder(state) {
-      state.data = [...initialState.data].sort(
-        () => Math.random() - Math.random(),
-      );
+      state.data = [...state.data].sort(() => Math.random() - Math.random());
     },
     extraReducers: {},
   },
 });
 
 export const {
-  initializeForm,
   addReview,
   addComment,
   addRecomment,

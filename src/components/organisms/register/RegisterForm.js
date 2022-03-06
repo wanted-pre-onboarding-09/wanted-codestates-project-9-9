@@ -14,12 +14,10 @@ function RegisterForm() {
   const { content } = useSelector(({ form }) => form);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [files, setFiles] = useState(null);
   const [image, setImage] = useState([]);
   const [rating, setRating] = useState(3);
   const starArr = [1, 2, 3, 4, 5];
   const uploadRef = useRef();
-  console.log(files);
 
   const imageUpload = () => {
     uploadRef.current.click();
@@ -45,7 +43,6 @@ function RegisterForm() {
 
     if (files) {
       [].forEach.call(files, readAndPreview);
-      setFiles(files);
     }
   };
   const handleSubmit = (e) => {

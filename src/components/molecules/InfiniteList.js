@@ -5,16 +5,17 @@ import styled from 'styled-components';
 
 function InfiniteList({ reviews }) {
   const items = useRef();
+  const [check, setCheck] = useState(true);
   const dataIndex = useRef(20);
-  const [dataList, setDataList] = useState(reviews.slice(0, 20));
-
-  const getMoreItems = () => {
-    setDataList(reviews.slice(0, dataIndex.current));
-  };
-
+  // const [dataList, setDataList] = useState(reviews.slice(0, 20));
+  // const test = reviews;
+  // const getMoreItems = () => {
+  //   setDataList(reviews.slice(0, dataIndex.current));
+  // };
   const onIntersect = ([entry]) => {
-    if (entry.isIntersecting) {
-      getMoreItems();
+    if (entry.isIntersecting && entry.boundingClientRect.y > 0) {
+      // getMoreItems();
+      setCheck(!check);
       dataIndex.current += 20;
     }
   };
@@ -34,15 +35,14 @@ function InfiniteList({ reviews }) {
 
   return (
     <DataContainer ref={items}>
-      {dataList.map((data) => (
+      {reviews.slice(0, dataIndex.current).map((data) => (
         <Link to={`/detail/${data.postNumber}`}>
           <Datalist
             key={data.postNumber}
             data={data}
             src={data.img[0]}
-            alt={data.postNumber}
+            alt="리뷰 사진"
           />
-          <div> </div>
         </Link>
       ))}
     </DataContainer>

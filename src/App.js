@@ -12,7 +12,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/detail" element={<DetailPage />} />
+          <Route path="/detail/:id" element={<DetailPage />} />
         </Routes>
       </WholeContainer>
     </BrowserRouter>
@@ -25,4 +25,5 @@ const WholeContainer = styled.div`
   width: 500px;
   height: 100vh;
   margin: 0 auto;
+  overflow-y: scroll;
 `;

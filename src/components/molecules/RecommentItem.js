@@ -35,14 +35,12 @@ function RecommentItem({ recomment, handleSubmit, handleForm }) {
 export default RecommentItem;
 
 RecommentItem.propTypes = {
-  recomment: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number,
-      nickname: PropTypes.string,
-      date: PropTypes.string,
-      contents: PropTypes.string,
-    }),
-  ).isRequired,
+  recomment: PropTypes.shape({
+    id: PropTypes.number,
+    nickname: PropTypes.string,
+    date: PropTypes.string,
+    contents: PropTypes.string,
+  }).isRequired,
   handleSubmit: PropTypes.func.isRequired,
   handleForm: PropTypes.func.isRequired,
 };

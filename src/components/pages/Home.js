@@ -3,10 +3,13 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
 import { RotatingLines } from 'react-loader-spinner';
-import { latestOrder } from '../../store/review/reviewSlice';
+
 import Filter from '../atmoms/Filter';
-import ListPage from '../molecules/ListPage';
 import ListBtn from '../atmoms/ListBtn';
+import ShareItems from '../atmoms/ShareItems';
+import OneClickTop from '../atmoms/OneClickTop';
+import RegisterButton from '../atmoms/register/RegisterButton';
+
 import DetailTop from '../organisms/detail/DetailTop';
 import DetailImg from '../organisms/detail/DetailImg';
 import DetailButton from '../organisms/detail/DetailButton';
@@ -15,23 +18,35 @@ import DetailBuyOption from '../organisms/detail/DetailBuyOption';
 import DetailContent from '../organisms/detail/DetailContent';
 import DetailReviewSwiper from '../organisms/detail/DetailReviewSwiper';
 import DetailDelivery from '../organisms/detail/DetailDelivery';
-import ShareItems from '../atmoms/ShareItems';
-import OneClickTop from '../atmoms/OneClickTop';
 import CommentContainer from '../organisms/CommentContainer';
-import RegisterButton from '../atmoms/register/RegisterButton';
+
+import ListPage from '../molecules/ListPage';
+import {
+  latestOrder,
+  reviewOrder,
+  randomOrder,
+} from '../../store/review/reviewSlice';
 
 function Home() {
   const [page, setPage] = useState(true);
   const detailPageData = useSelector((state) => state.review.data);
   const modalValue = useSelector((state) => state.isOpenModal.openValue);
+  const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
 
-  const [loading, setLoading] = useState(true);
+  const clickLatestOrder = () => {
+    dispatch(latestOrder());
+  };
+  const clickReviewOrder = () => {
+    dispatch(reviewOrder());
+  };
+  const clickRandomOrder = () => {
+    dispatch(randomOrder());
+  };
 
   useEffect(() => {
     const loader = setTimeout(() => setLoading(!loading), 3000);
-    dispatch(latestOrder());
-
+    clickLatestOrder();
     return () => clearTimeout(loader);
   }, []);
 
@@ -39,7 +54,11 @@ function Home() {
     return (
       <WholeContainer>
         <Wrapper>
-          <Filter />
+          <Filter
+            clickLatestOrder={clickLatestOrder}
+            clickReviewOrder={clickReviewOrder}
+            clickRandomOrder={clickRandomOrder}
+          />
           <Link to="/register">
             <RegisterButton />
           </Link>
@@ -50,7 +69,7 @@ function Home() {
             <RotatingLines />
           </div>
         ) : (
-          <ListPage />
+          <ListPage arr={detailPageData} />
         )}
       </WholeContainer>
     );
@@ -58,7 +77,11 @@ function Home() {
   return (
     <WholeContainer>
       <Wrapper>
-        <Filter />
+        <Filter
+          clickLatestOrder={clickLatestOrder}
+          clickReviewOrder={clickReviewOrder}
+          clickRandomOrder={clickRandomOrder}
+        />
         <Link to="/register">
           <RegisterButton />
         </Link>
