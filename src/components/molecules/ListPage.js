@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { useRef } from 'react';
 import { FaArrowUp } from 'react-icons/fa';
 import styled from 'styled-components';
