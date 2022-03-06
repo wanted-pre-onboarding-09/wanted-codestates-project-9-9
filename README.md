@@ -164,6 +164,13 @@
   - 대댓글 추가: 어느 리뷰에 해당하는 대댓글인지 찾기 위해 현재 어떤 리뷰인지를 찾아 `currentReview`에 넣어주었다. 그 리뷰의 어느 댓글인지를 찾기 위해 `commentId`를 받아 `filter` 함수로 해당 대댓글을 찾아줬다. 해당 대댓글에 `action.payload.newRecomment`를 넣어줬다.
 
 ### 이지수
+- 무한스크롤 구현
+  - `useEffect` 부분
+    - `IntersectionObsever API` 를 이용하여  Target Element가 viewport에 노출 되었는지 감시함 </br>
+렌더링 된 요소 중 가장 마지막 element를 Target요소로 지정
+    - target 요소가 화면에 50% 보여질 때 onIntersect 함수 시행
+  - `onIntersect` 부분
+    - `props`로 전달 받는 데이터를 20개씩 복사해서 화면에 렌더링 하는데(`reviews.slice(0, dataIndex.current)`) target 요소가 화면에 보일 때마다 복사하는 index를 20씩 증가 시켜서 다음 데이터가 보일 수 있게 함 `dataIndex.current += 20`
 
 ### 조영제
 
