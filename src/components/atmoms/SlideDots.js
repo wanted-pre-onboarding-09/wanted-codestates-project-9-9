@@ -30,21 +30,23 @@ const DotBtn = styled.button`
   border: none;
 `;
 
-function SliderDots({ curIndex, contentsDatas, moveSlider }) {
+function SliderDots({ currentIndex, contentsDatas, moveSlider }) {
   const sliderDatas = contentsDatas.map((data, index) => ({
     index_id: index,
   }));
 
   return (
     <DotList>
-      {sliderDatas.map((data) => (
-        <DotItem key={data.idex_id}>
-          <DotBtn
-            active={curIndex === data.index_id}
-            onClick={() => moveSlider(data.index_id)}
-          />
-        </DotItem>
-      ))}
+      {sliderDatas.length > 1
+        ? sliderDatas.map((data) => (
+            <DotItem key={data.idex_id}>
+              <DotBtn
+                active={currentIndex === data.index_id}
+                onClick={() => moveSlider(data.index_id)}
+              />
+            </DotItem>
+          ))
+        : ''}
     </DotList>
   );
 }
@@ -65,6 +67,6 @@ SliderDots.propTypes = {
       upload_date: PropTypes.string,
     }),
   ).isRequired,
-  curIndex: PropTypes.number.isRequired,
+  currentIndex: PropTypes.number.isRequired,
   moveSlider: PropTypes.func.isRequired,
 };

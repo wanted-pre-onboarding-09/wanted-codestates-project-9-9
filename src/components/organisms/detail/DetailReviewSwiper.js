@@ -47,11 +47,15 @@ const DetailReviewSwiperWrap = styled.div`
 function DetailReviewSwiper({ data }) {
   return (
     <DetailReviewSwiperWrap>
-      {Object.keys(data.reviewSize).map((key) => {
+      {data.reviewSize.map((review, idx) => {
         return (
-          <div className="content-title" key={key}>
-            <span className="content-que">{data.reviewSize[key].title}</span>
-            <span className="content-ans">{data.reviewSize[key].txt}</span>
+          <div
+            className="content-title"
+            id={`swiperId${idx}`}
+            key={idx.toString()}
+          >
+            <span className="content-que">{review.title}</span>
+            <span className="content-ans">{review.txt}</span>
           </div>
         );
       })}

@@ -6,7 +6,7 @@ import SliderDots from '../../atmoms/SlideDots';
 
 const DetailImgWrap = styled.div`
   position: relative;
-  width: 100%;
+  min-width: 100%;
   height: 626px;
   display: flex;
   justify-content: center;
@@ -16,6 +16,7 @@ const DetailImgWrap = styled.div`
     width: 100%;
     height: 100%;
     display: flex;
+    transition: 0.3s ease-out;
 
     > img {
       width: 100%;
@@ -25,62 +26,76 @@ const DetailImgWrap = styled.div`
 `;
 
 function DetailImg({ data }) {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const slideRef = useRef(null);
+  const slideRef = useRef();
   const maxSlideIndex = data.img.length - 1;
+  const flipGap = 80;
+  const [currentIndex, setCurrentIndex] = useState(0);
 
-  const prevSlide = () => {
-    if (currentSlide === 0) {
-      setCurrentSlide(maxSlideIndex);
-    } else {
-      setCurrentSlide(currentSlide - 1);
-    }
-  };
-
-  const nextSlide = () => {
-    if (currentSlide >= maxSlideIndex) {
-      setCurrentSlide(0); // 마지막 슬라이드의 경우에 슬라이드 인덱스를 초기화
-    } else {
-      setCurrentSlide(currentSlide + 1);
-    }
-  };
+  let slideStartX = 0;
+  let slideGap = 0;
+  let isSlide = false;
 
   useEffect(() => {
-    slideRef.current.style.transition = 'all 0.5s ease-in-out';
-    slideRef.current.style.transform = `translateX(-${currentSlide}00%)`;
-  }, [currentSlide]);
+    slideRef.current.style.transform = `translateX(-${currentIndex}00%)`;
+  }, [currentIndex]);
 
-  let startX;
-  let endX;
-
-  const onTouchStart = (event) => {
-    startX = event.touches[0].pageX;
+  const slideStart = (e) => {
+    slideStartX = e.clientX;
+    isSlide = true;
   };
-  const onTouchEnd = (event) => {
-    endX = event.changedTouches[0].pageX;
-    if (startX > endX) {
-      nextSlide();
-    } else {
-      prevSlide();
+
+  const slideMove = (e) => {
+    if (isSlide) {
+      slideGap = slideStartX - e.clientX;
+      if (currentIndex >= maxSlideIndex && slideGap > 0) {
+        slideGap = 0;
+      }
     }
+  };
+
+  const slideEnd = (e) => {
+    slideGap = slideStartX - e.clientX;
+
+    if (slideGap >= flipGap) {
+      if (currentIndex + 1 > maxSlideIndex) {
+        setCurrentIndex(maxSlideIndex);
+      } else if (currentIndex + 1 <= maxSlideIndex) {
+        setCurrentIndex(currentIndex + 1);
+      }
+    } else if (slideGap <= -flipGap) {
+      if (currentIndex - 1 < 0) {
+        setCurrentIndex(0);
+      } else if (currentIndex - 1 >= 0) {
+        setCurrentIndex(currentIndex - 1);
+      }
+    }
+
+    slideGap = 0;
+    isSlide = false;
+  };
+
+  const moveSlider = (id) => {
+    setCurrentIndex(id);
   };
 
   return (
-    <DetailImgWrap>
+    <DetailImgWrap role="slider">
       <div
+        role="presentation"
         className="DetailImg"
         ref={slideRef}
-        onTouchStart={onTouchStart}
-        onTouchEnd={onTouchEnd}
+        onDragStart={slideStart}
+        onDrag={slideMove}
+        onDragEnd={slideEnd}
       >
         {data.img.map((img, idx) => {
           return <img src={img} alt="없음" key={idx} />;
         })}
       </div>
       <SliderDots
-        curIndex={currentSlide}
+        currentIndex={currentIndex}
         contentsDatas={data.img}
-        moveSlider={nextSlide}
+        moveSlider={moveSlider}
       />
     </DetailImgWrap>
   );
