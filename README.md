@@ -56,28 +56,6 @@
 │  index.css
 │  index.js
 │
-├─assets
-│      btn_share_fb.png
-│      btn_share_ks.png
-│      btn_share_kt.png
-│      btn_share_tw.png
-│      btn_share_url.png
-│      detailIcon.png
-│      gridIcon.png
-│      ic-new-heart-normal.png
-│      icon-box-20.webp
-│      icon-more.png
-│      icon-star-black.webp
-│      icon-star-gray.webp
-│      icons8-heart-96.png
-│      ic_can_btn.png
-│      ic_left_btn.png
-│      like-hand-fill.png
-│      like_hand.png
-│      share.png
-│      tab-icon-01@2x.png
-│      tab-icon-02@2x.png
-│
 ├─components
 │  ├─atmoms
 │  │  │  ArrowUp.js
@@ -162,9 +140,17 @@
   - 이미지 데이터를 불러오는 리소스가 생각보다 큰걸 느꼇고 client에서 어떻게 처리할지 공부하는 계기가 되었습니다.
 
 ### 서한석
-- 상세 페이지 마우스 드래그에 따른 이미지 슬라이드 기능 구현(feat. 슬라이딩 dot 연동)
-- 좋아요 버튼 구현(feat. button click에 따른 좋아요 count Number 갱신)
-- reviewalbe 슬라드 
+- 상세 페이지 마크업과 스타일링 작업<br>
+<p align="left"><img src="https://user-images.githubusercontent.com/87353284/157573743-18202d52-a16e-4dd1-a7b7-246f422454d8.png" width="20%"/></P>
+
+- 상세 페이지 마우스 드래그에 따른 이미지 슬라이드 기능 구현(feat. 슬라이딩 dot 연동)<br>
+<p align="left"><img src="https://user-images.githubusercontent.com/87353284/157575419-ae705da4-8c79-48fc-8aaa-81f7b20da634.gif" width="20%"/></P>
+
+- 좋아요 버튼 구현(feat. Redux 전역저장소와 연동하여 button click에 따른 좋아요 count Number 갱신)<br>
+<p align="left"><img src="https://user-images.githubusercontent.com/87353284/157575735-c6ba4893-edaa-4b38-baa4-0c9a3e41f1df.gif" width="20%"/></P>
+
+- 공유링크 모달 구현
+<p align="left"><img src="https://user-images.githubusercontent.com/87353284/157576370-3819910b-46c3-41dd-b87e-ad6311eb1376.gif" width="20%"/></P>
 
 ### 손영산
 
